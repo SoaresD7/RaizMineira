@@ -46,3 +46,28 @@ footer {
   font-weight: bold;
   color: #a66c00;
 }
+
+.botao-voltar {
+  background: #f5b96a !important;
+  color: #3a2f2f !important;
+  border: 1px solid #f7a440 !important;
+}
+
+.botao-voltar:hover {
+  background: #ffd18a !important;
+}
+
+@keyframes zoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.caixa-grade, .grid-botoes {
+  animation: zoomFadeIn 0.3s cubic-bezier(0.4,0,0.2,1);
+}

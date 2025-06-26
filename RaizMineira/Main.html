@@ -8,22 +8,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-  <!-- Tela de bloqueio -->
-  <div id="tela-bloqueio" class="tela">
-    <div class="conteudo-bloqueio">Clique para desbloquear</div>
-    <button class="botao-fechar">X</button>
-  </div>
-
-  <!-- Tela de senha -->
-  <div id="tela-senha" class="tela escondido">
-    <div class="conteudo-senha">
-      <h2>Digite a senha</h2>
-      <input type="password" id="senha" placeholder="Senha" />
-    </div>
-  </div>
-
   <!-- Tela principal -->
-  <div id="tela-principal" class="tela escondido">
+  <div id="tela-principal" class="tela">
     <div class="caixa-grade">
       <div class="grid-botoes">
         <div class="botao grande" onclick="abrirPaginaPedidos()">
@@ -33,7 +19,7 @@
         <div class="botao" onclick="abrirPagina('../Reservas/GerenciarReservas.html')">Gerenciar Reservas</div>
         <div class="botao" onclick="abrirPagina('../Mesas/GerenciarMesas.html')">Gerenciar Mesas</div>
         <div class="botao" onclick="abrirPagina('../Cardapio/GerenciarCardapio.html')">Gerenciar Cardápio</div>
-        <div class="botao" onclick="abrirPagina('../Relatorios/GerenciarRelatorios.html')">Relatórios</div>
+        <div class="botao" onclick="abrirPagina('../Relatorios/Relatorios.html')">Relatórios</div>
         <div class="botao logout">Logout</div>
       </div>
     </div>
