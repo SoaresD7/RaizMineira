@@ -1,41 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form            = document.getElementById('reservaForm');
-  const dataInput       = document.getElementById('data');
-  const timeInput       = document.getElementById('hora');
-  const listaIndispo    = document.getElementById('listaIndisponiveis');
-  const resultOverlay   = document.getElementById('resultOverlay');
-  const resultText      = document.getElementById('resultText');
-  const resultOkBtn     = document.getElementById('resultOkBtn');
+  // Botão Voltar com ação
+  document.getElementById('voltar-reservas')
+    .addEventListener('click', () => window.history.back());
 
-  let currentDay      = null;
-  let reservedSlots   = [];
+  const form         = document.getElementById('reservaForm');
+  const dataInput    = document.getElementById('data');
+  const timeInput    = document.getElementById('hora');
+  const listaIndispo = document.getElementById('listaIndisponiveis');
+  const toast        = document.getElementById('toast');
 
-  dataInput.addEventListener('change', async () => {
+  let reservedSlots = [];
+
+  dataInput.addEventListener('change', () => {
     clearErrors();
     timeInput.value = '';
     listaIndispo.innerHTML = '';
-    const dateVal = dataInput.value;
-    if (!dateVal) return;
+    const val = dataInput.value;
+    if (!val) return;
 
-    currentDay = new Date(dateVal).getDay();
-    if ([4,5,6].includes(currentDay)) {
+    const day = new Date(val).getDay();
+    if ([4,5,6].includes(day)) {
       timeInput.min = '11:00'; timeInput.max = '23:59';
-    } else if (currentDay === 0) {
+    } else if (day === 0) {
       timeInput.min = '11:00'; timeInput.max = '23:00';
     } else {
       timeInput.min = ''; timeInput.max = '';
     }
 
-    try {
-      const res = await fetch(`/api/reservas?date=${dateVal}`);
-      reservedSlots = res.ok ? await res.json() : [];
-    } catch {
-      reservedSlots = [];
-    }
-
-    reservedSlots.forEach(horario => {
+    // Simulação de horários já reservados
+    reservedSlots = ['12:00', '14:30', '19:00'];
+    reservedSlots.forEach(h => {
       const li = document.createElement('li');
-      li.textContent = `${horario} — indisponível`;
+      li.textContent = `${h} — indisponível`;
       listaIndispo.appendChild(li);
     });
   });
@@ -43,50 +39,49 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async e => {
     e.preventDefault();
     clearErrors();
-    if (!dataInput.value) return setError('dataError','Escolha uma data.');
-    if (!timeInput.value) return setError('horaError','Escolha um horário.');
+
+    if (!form.nome.value)      return setError('nomeError', 'Digite seu nome.');
+    if (!form.cpf.value)       return setError('cpfError', 'Digite seu CPF.');
+    if (!dataInput.value)      return setError('dataError', 'Escolha uma data.');
+    if (!timeInput.value)      return setError('horaError', 'Escolha um horário.');
     if (reservedSlots.includes(timeInput.value)) {
-      return setError('horaError','Horário indisponível. Escolha outro.');
+      return setError('horaError', 'Horário indisponível.');
     }
+    if (!form.pessoas.value)   return setError('pessoasError', 'Informe nº de pessoas.');
+    if (!form.telefone.value)  return setError('telefoneError', 'Digite seu telefone.');
+    if (!form.email.value)     return setError('emailError', 'Digite seu e‑mail.');
 
-    resultOverlay.style.display = 'flex';
-    resultText.textContent = 'Verificando...';
-    resultOkBtn.style.display = 'none';
+    showToast('Verificando...', 'success');
 
-    const payload = {
-      nome:     form.nome.value,
-      cpf:      form.cpf.value,
-      date:     dataInput.value,
-      time:     timeInput.value,
-      pessoas:  form.pessoas.value,
-      telefone: form.telefone.value,
-      email:    form.email.value
-    };
-
+    let sucesso;
     try {
-      const resp = await fetch('/api/reservas', {
-        method: 'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (resp.ok) {
-        resultText.textContent = 'Sua reserva foi cadastrada com sucesso!';
-      } else {
-        resultText.textContent = 'Sua reserva não foi cadastrada com erro! Tente novamente.';
-      }
+      sucesso = true;
     } catch {
-      resultText.textContent = 'Sua reserva não foi cadastrada com erro! Tente novamente.';
+      sucesso = false;
     }
 
-    resultOkBtn.style.display = 'block';
+    setTimeout(() => {
+      if (sucesso) {
+        showToast('Reserva cadastrada com sucesso!', 'success');
+        setTimeout(() => {
+          window.location.href = '../Inicio/UsarioTela.html';
+        }, 2000);
+      } else {
+        showToast('Erro ao cadastrar. Tente novamente.', 'error');
+      }
+    }, 2000);
   });
 
-  resultOkBtn.addEventListener('click', () => {
-    resultOverlay.style.display = 'none';
-    form.reset();
-    listaIndispo.innerHTML = '';
-  });
-
-  function setError(id,msg)   { document.getElementById(id).textContent = msg; }
-  function clearErrors()      { document.querySelectorAll('.error').forEach(el=>el.textContent=''); }
+  function setError(id, msg) {
+    document.getElementById(id).textContent = msg;
+  }
+  function clearErrors() {
+    document.querySelectorAll('.error').forEach(el => el.textContent = '');
+  }
+  function showToast(message, tipo) {
+    toast.textContent = message;
+    toast.className = `toast show ${tipo}`;
+    clearTimeout(toast.hideTimer);
+    toast.hideTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  }
 });

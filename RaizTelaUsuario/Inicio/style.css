@@ -71,24 +71,6 @@ body, html {
   z-index: 2;
 }
 
-/* Botão Voltar */
-.botao-fechar {
-  position: absolute;
-  top: 16px; right: 16px;
-  padding: 8px 14px;
-  background-color: #fffefc;
-  color: var(--laranja);
-  border: 2px solid var(--laranja);
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  z-index: 999;
-}
-.botao-fechar:hover {
-  background-color: var(--laranja);
-  color: #fff;
-}
 
 /* Caixa central */
 .caixa-grade {
