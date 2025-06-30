@@ -63,6 +63,7 @@ h2 {
   border: 2px solid #ddd;
   border-radius: 10px;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .form-group input:focus {
@@ -99,10 +100,11 @@ h2 {
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 .btn-submit:hover {
   background: var(--laranja-hover);
+  transform: translateY(-2px);
 }
 
 /* Toast */
@@ -146,13 +148,24 @@ h2 {
   font-weight: bold;
   font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
 }
-
-
 .botao-voltar:hover {
   background-color: var(--laranja-hover);
   color: #fff;
   transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+  .btn-submit {
+    width: 100%;
+  }
+  .form-group input {
+    width: 100%;
+  }
 }

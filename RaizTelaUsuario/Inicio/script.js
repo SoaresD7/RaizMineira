@@ -9,19 +9,16 @@ window.addEventListener('DOMContentLoaded', () => {
     main.classList.remove('hidden');
   }, 4000);
 
-  // Botão “Voltar”
-  document.getElementById('voltar-reservas')
-    .addEventListener('click', () => window.history.back());
-
+ 
   // Redirecionamentos para index.html
   document.getElementById('btn-inserir-reserva')
     .addEventListener('click', () => {
-      window.location.href = 'index.html';
+      window.location.href = '../Inser/Inserir.html';
     });
 
   document.getElementById('btn-cadastrar-reserva')
     .addEventListener('click', () => {
-      window.location.href = 'index.html';
+      window.location.href = '../Cadastro/Cadastro.html';
     });
 
   document.getElementById('btn-ver-minhas-reservas')
@@ -29,3 +26,5 @@ window.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'index.html';
     });
 });
+
+

@@ -6,7 +6,7 @@
   --verde: #4caf50;
   --vermelho: #f44336;
   --texto-escuro: #3a2f2f;
-  --texto-titulo: #a56e1a;
+  --texto-totulo: #a56e1a;
 }
 
 * {
@@ -25,15 +25,36 @@ body, html {
   justify-content: center;
   padding: 1rem;
   color: var(--texto-escuro);
-  position: relative;
 }
 
+/* Botão Voltar */
+.botao-fechar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 14px;
+  background-color: #ffebc3;
+  color: var(--laranja);
+  border: 2px solid var(--laranja);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
+}
+.botao-fechar:hover {
+  background-color: var(--laranja-hover);
+  color: #fff;
+}
+
+/* Container do formulário */
 .form-container {
   background: var(--fundo-caixa);
   padding: 2rem;
   border-radius: 12px;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   text-align: center;
 }
@@ -41,7 +62,7 @@ body, html {
 h2 {
   margin-bottom: 2rem;
   font-size: 1.8rem;
-  color: var(--texto-titulo);
+  color: var(--texto-totulo);
 }
 
 .form-group {
@@ -58,7 +79,7 @@ h2 {
 
 .form-group input {
   width: 90%;
-  max-width: 350px;
+  max-width: 300px;
   padding: 0.6rem;
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -77,20 +98,9 @@ h2 {
   min-height: 1em;
 }
 
-.lista-indisponiveis {
-  list-style: none;
-  margin-top: 0.5rem;
-  padding: 0;
-  color: var(--vermelho);
-  font-size: 0.875rem;
-}
-.lista-indisponiveis li {
-  opacity: 0.8;
-}
-
 .btn-submit {
   width: 70%;
-  max-width: 250px;
+  max-width: 200px;
   padding: 0.8rem;
   background: var(--laranja);
   color: #fff;
@@ -108,9 +118,8 @@ h2 {
 /* Toast */
 .toast {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  min-width: 200px;
+  bottom: 20px; right: 20px;
+  min-width: 180px;
   padding: 1rem;
   border-radius: 6px;
   color: #fff;
@@ -131,28 +140,4 @@ h2 {
 }
 .toast.error {
   background: var(--vermelho);
-}
-
-/* Botão Voltar com seta */
-.botao-voltar {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 8px 14px;
-  background-color: #ffebc3;
-  color: var(--laranja);
-  border: 2px solid var(--laranja);
-  border-radius: 6px;
-  font-weight: bold;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
-}
-
-
-.botao-voltar:hover {
-  background-color: var(--laranja-hover);
-  color: #fff;
-  transform: translateY(-2px);
 }
