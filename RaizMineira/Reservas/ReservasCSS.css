@@ -56,10 +56,9 @@ footer {
 }
 
 .botao-voltar {
-  background: #ffe0b2;
-  color: #a66c00;
-  font-weight: bold;
-  margin-top: 2rem;
+  background: #f7be71 !important;
+  color: #3a2f2f !important;
+  border: 1px solid #f7a440 !important;
 }
 
 .painel-reservas {
