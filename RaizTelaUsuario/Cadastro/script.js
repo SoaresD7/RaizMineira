@@ -1,33 +1,42 @@
+// Aguarda carregamento completo do DOM
 document.addEventListener('DOMContentLoaded', () => {
-  // Botão Voltar com ação
-  document.getElementById('voltar-reservas')
-    .addEventListener('click', () => window.history.back());
-
+  // Referências aos elementos do formulário
   const form         = document.getElementById('reservaForm');
   const dataInput    = document.getElementById('data');
   const timeInput    = document.getElementById('hora');
   const listaIndispo = document.getElementById('listaIndisponiveis');
   const toast        = document.getElementById('toast');
 
+  // Array para simular horários já reservados
   let reservedSlots = [];
 
+  // Ao mudar a data, ajusta limites de horário e mostra indisponíveis
   dataInput.addEventListener('change', () => {
-    clearErrors();
-    timeInput.value = '';
+    clearErrors();             // limpa erros antigos
+    timeInput.value = '';      
     listaIndispo.innerHTML = '';
+
     const val = dataInput.value;
     if (!val) return;
 
     const day = new Date(val).getDay();
+    // Qui–Sáb
     if ([4,5,6].includes(day)) {
-      timeInput.min = '11:00'; timeInput.max = '23:59';
-    } else if (day === 0) {
-      timeInput.min = '11:00'; timeInput.max = '23:00';
-    } else {
-      timeInput.min = ''; timeInput.max = '';
+      timeInput.min = '11:00';
+      timeInput.max = '23:59';
+    }
+    // Domingo
+    else if (day === 0) {
+      timeInput.min = '11:00';
+      timeInput.max = '23:00';
+    }
+    // Outros dias sem restrição
+    else {
+      timeInput.min = '';
+      timeInput.max = '';
     }
 
-    // Simulação de horários já reservados
+    // Simula slots já ocupados
     reservedSlots = ['12:00', '14:30', '19:00'];
     reservedSlots.forEach(h => {
       const li = document.createElement('li');
@@ -36,10 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  form.addEventListener('submit', async e => {
+  // Validação e submissão do formulário
+  form.addEventListener('submit', e => {
     e.preventDefault();
     clearErrors();
 
+    // Checa campos obrigatórios
     if (!form.nome.value)      return setError('nomeError', 'Digite seu nome.');
     if (!form.cpf.value)       return setError('cpfError', 'Digite seu CPF.');
     if (!dataInput.value)      return setError('dataError', 'Escolha uma data.');
@@ -51,18 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!form.telefone.value)  return setError('telefoneError', 'Digite seu telefone.');
     if (!form.email.value)     return setError('emailError', 'Digite seu e‑mail.');
 
+    // Mostra “Verificando...”
     showToast('Verificando...', 'success');
 
-    let sucesso;
-    try {
-      sucesso = true;
-    } catch {
-      sucesso = false;
-    }
-
+    // Simula processo de cadastro
     setTimeout(() => {
+      const sucesso = true; // troque pela sua lógica real
+
       if (sucesso) {
         showToast('Reserva cadastrada com sucesso!', 'success');
+        // Após 2s, retorna à tela principal
         setTimeout(() => {
           window.location.href = '../Inicio/UsarioTela.html';
         }, 2000);
@@ -72,16 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
   });
 
+  // Exibe mensagem de erro em <span> específico
   function setError(id, msg) {
     document.getElementById(id).textContent = msg;
   }
+
+  // Limpa todas as mensagens de erro
   function clearErrors() {
     document.querySelectorAll('.error').forEach(el => el.textContent = '');
   }
+
+  // Controla o toast de feedback
   function showToast(message, tipo) {
     toast.textContent = message;
-    toast.className = `toast show ${tipo}`;
+    toast.className = `toast show ${tipo}`;   // ex: "toast show success"
     clearTimeout(toast.hideTimer);
-    toast.hideTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    toast.hideTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
   }
 });

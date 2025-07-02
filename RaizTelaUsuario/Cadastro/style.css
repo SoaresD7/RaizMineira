@@ -9,6 +9,7 @@
   --texto-titulo: #a56e1a;
 }
 
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +29,29 @@ body, html {
   position: relative;
 }
 
+/* --- Botão Voltar --- */
+.botao-voltar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 14px;
+  background-color: #ffebc3;
+  color: var(--laranja);
+  border: 2px solid var(--laranja);
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
+}
+.botao-voltar:hover {
+  background-color: var(--laranja-hover);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Container do formulário */
 .form-container {
   background: var(--fundo-caixa);
   padding: 2rem;
@@ -38,12 +62,14 @@ body, html {
   text-align: center;
 }
 
+/* Título */
 h2 {
   margin-bottom: 2rem;
   font-size: 1.8rem;
   color: var(--texto-titulo);
 }
 
+/* Grupos de campos */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -63,13 +89,14 @@ h2 {
   border: 2px solid #ddd;
   border-radius: 10px;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
-
 .form-group input:focus {
   outline: none;
   border-color: var(--laranja);
 }
 
+/* Erros */
 .error {
   margin-top: 0.3rem;
   font-size: 0.875rem;
@@ -77,6 +104,7 @@ h2 {
   min-height: 1em;
 }
 
+/* Lista de indisponíveis */
 .lista-indisponiveis {
   list-style: none;
   margin-top: 0.5rem;
@@ -88,6 +116,7 @@ h2 {
   opacity: 0.8;
 }
 
+/* Botão de envio */
 .btn-submit {
   width: 70%;
   max-width: 250px;
@@ -99,7 +128,7 @@ h2 {
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 .btn-submit:hover {
   background: var(--laranja-hover);
@@ -131,28 +160,4 @@ h2 {
 }
 .toast.error {
   background: var(--vermelho);
-}
-
-/* Botão Voltar com seta */
-.botao-voltar {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 8px 14px;
-  background-color: #ffebc3;
-  color: var(--laranja);
-  border: 2px solid var(--laranja);
-  border-radius: 6px;
-  font-weight: bold;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
-}
-
-
-.botao-voltar:hover {
-  background-color: var(--laranja-hover);
-  color: #fff;
-  transform: translateY(-2px);
 }

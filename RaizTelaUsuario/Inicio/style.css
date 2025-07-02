@@ -1,4 +1,5 @@
 :root {
+  /* Variáveis de cor para reaproveitamento no CSS */
   --fundo-principal: #fff3e0;
   --fundo-caixa:     #ffdcad;
   --fundo-tela:      #fab956;
@@ -7,18 +8,19 @@
   --texto-escuro:    #3a2f2f;
 }
 
-/* Utils */
+/* Classe utilitária para esconder elementos */
 .hidden {
   display: none !important;
 }
 
-/* Reset básico */
+/* Reset básico de margens e espaçamento para todos os elementos */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilização básica do corpo da página */
 body, html {
   width: 100%;
   height: 100%;
@@ -27,17 +29,19 @@ body, html {
   color: var(--texto-escuro);
 }
 
-/* === Animações de entrada/saída === */
+/* Animação de entrada com aumento de opacidade e escala */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.8); }
   to   { opacity: 1; transform: scale(1); }
 }
+
+/* Animação de saída com diminuição de opacidade e aumento de escala */
 @keyframes fadeOut {
   from { opacity: 1; transform: scale(1); }
   to   { opacity: 0; transform: scale(1.2); }
 }
 
-/* Tela de Boas-Vindas */
+/* Tela de boas-vindas com animações */
 #welcome-screen {
   position: fixed;
   top: 0; left: 0;
@@ -48,8 +52,8 @@ body, html {
   align-items: center;
   z-index: 10;
   animation:
-    fadeIn 1s ease-out forwards,
-    fadeOut 1s ease-in 3s forwards;
+    fadeIn 1s ease-out forwards,       /* Entrada em 1s */
+    fadeOut 1s ease-in 3s forwards;    /* Saída depois de 3s */
 }
 
 #welcome-screen h1 {
@@ -59,7 +63,7 @@ body, html {
   padding: 0 1rem;
 }
 
-/* === Tela Principal === */
+/* Tela principal (padrão oculta) */
 .tela {
   position: fixed;
   top: 0; left: 0;
@@ -71,8 +75,7 @@ body, html {
   z-index: 2;
 }
 
-
-/* Caixa central */
+/* Caixa central com os botões */
 .caixa-grade {
   background-color: var(--fundo-caixa);
   padding: 50px;
@@ -89,13 +92,13 @@ body, html {
   text-align: center;
 }
 
-/* Grid de botões */
+/* Layout em grade para os botões */
 .grid-botoes {
   display: grid;
   gap: 20px;
 }
 
-/* Botões Grandes */
+/* Estilo dos botões */
 .botao {
   background-color: var(--laranja);
   padding: 35px;
@@ -108,6 +111,8 @@ body, html {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+/* Efeito ao passar o mouse nos botões */
 .botao:hover {
   background-color: var(--laranja-hover);
   transform: translateY(-2px);

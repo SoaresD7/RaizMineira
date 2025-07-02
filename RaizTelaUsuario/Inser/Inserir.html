@@ -4,27 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inserir Reserva</title>
+  <!-- Vincula o CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Botão Voltar no canto superior direito -->
-  <button id="voltar-reservas" class="botao-fechar">← Voltar</button>
+  <!--
+    Botão Voltar no canto superior direito:
+    Usamos <a> para linkar diretamente à tela principal.
+  -->
+  <a href="/Inicio/UsarioTela.html">
+    <button id="voltar-reservas" class="botao-fechar">← Voltar</button>
+  </a>
 
   <div class="form-container">
     <h2>Inserir Reserva</h2>
+    <!-- Formulário de inserção de reserva -->
     <form id="inserirForm" novalidate>
       <!-- CPF -->
       <div class="form-group">
         <label for="cpf">CPF *</label>
-        <input type="text" id="cpf" name="cpf" placeholder="Apenas números" maxlength="14" required />
+        <input 
+          type="text" 
+          id="cpf" 
+          name="cpf" 
+          placeholder="Apenas números" 
+          maxlength="14" 
+          required 
+        />
         <span class="error" id="cpfError"></span>
       </div>
+
       <!-- Número da Reserva -->
       <div class="form-group">
         <label for="reserva">Número da Reserva *</label>
-        <input type="text" id="reserva" name="reserva" placeholder="Ex: 12345" required />
+        <input 
+          type="text" 
+          id="reserva" 
+          name="reserva" 
+          placeholder="Ex: 12345" 
+          required 
+        />
         <span class="error" id="reservaError"></span>
       </div>
+
       <!-- Botão Inserir -->
       <div class="form-group">
         <button type="submit" class="btn-submit">Inserir</button>
@@ -32,9 +54,10 @@
     </form>
   </div>
 
-  <!-- Toast de feedback -->
+  <!-- Toast de feedback (mensagens flutuantes) -->
   <div id="toast" class="toast"></div>
 
+  <!-- Vincula o JavaScript -->
   <script src="inserir.js" defer></script>
 </body>
 </html>

@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const toast    = document.getElementById('toast');
   const btnBack  = document.getElementById('voltar-reservas');
 
-  // Botão de voltar
-  btnBack.addEventListener('click', () => window.history.back());
+  // Botão Voltar funcionando
+  /*btnBack.addEventListener('click', () => {
+    window.location.href = '../Inicio/UsarioTela.html'; 
+  });*/
 
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (encontrado) {
         showToast('Reserva encontrada!', 'success');
         setTimeout(() => {
-          window.location.href = 'detalhes-reserva.html'; // ou sua página de resultado
+          window.location.href = ''; 
         }, 2000);
       } else {
         showToast('Reserva não encontrada.', 'error');
