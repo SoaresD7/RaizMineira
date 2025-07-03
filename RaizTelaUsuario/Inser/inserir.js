@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Reserva inserida com sucesso!', 'success');
         // Após 2s, redireciona (substitua pelo seu arquivo real)
         setTimeout(() => {
-          window.location.href = 'pagina-sucesso.html';
+          window.location.href = '../SistemaUsuarioInicio/Inicio/Inicio.html';
         }, 2000);
       } else {
         // Erro ao inserir
