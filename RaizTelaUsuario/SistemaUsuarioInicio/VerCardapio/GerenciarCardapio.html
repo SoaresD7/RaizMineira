@@ -1,0 +1,109 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciar Cardápio</title>
+  <link rel="stylesheet" href="CardapioCSS.css" />
+</head>
+<body>
+  <div class="tela">
+    <aside class="menu-lateral">
+      <button class="botao" id="concluir">Concluir</button>
+
+      <button class="botao filter-btn" data-category="Entrada">Entradas</button>
+      <button class="botao filter-btn" data-category="Prato">Pratos Principais</button>
+      <button class="botao filter-btn" data-category="Vegetariano">Pratos Vegetarianos</button>
+      <button class="botao filter-btn" data-category="Sobremesa">Sobremesas</button>
+      <button class="botao filter-btn" data-category="Bebida">Bebidas</button>
+      <button class="botao filter-btn" data-category="Extra">Extras</button>
+    </aside>
+
+    <main class="conteudo-principal">
+      <h1>Gerenciar Cardápio</h1>
+      <div class="painel-cardapio-scroll">
+        <div class="tabela-cardapio">
+          <div class="linha-cardapio">
+
+            <!-- Entradas -->
+            <script>
+              const entradas = [
+                "Trem Bão de Minas", "Petisco da Roça", "Anguzinho da Esquina", "Bolinho do Sertão", "Queijim no Capricho",
+                "Pastel do Coreto", "Dadinho de Canastra", "Croquete do Curral", "Linguiça da Várzea", "Porção da Comadre",
+                "Palitinho do Arraiá", "Couve Crocante do Zé", "Pão de Queijo Recheado", "Torresminho Caipira",
+                "Mandioca do Fogão a Lenha", "Pimenta do Mato", "Chouriço Crocante", "Couve Crispy",
+                "Provolone de Ouro", "Escondidinho da Estação"
+              ];
+              const pratos = [
+                "Costelinha da Vovó Maria", "Franguim com Quiabo Supremo", "Tutu Valente", "Canjiquinha Real",
+                "Vaca Atolada de Ouro", "Feijão Tropeiro do Cerrado", "Rabada do Sertão", "Picanha do Curral",
+                "Arroz Carreteiro do Vale", "Leitão à Pururuca Imperial", "Peixim de Lagoa", "Baião de Dois das Gerais",
+                "Panela do Sitiante", "Frango ao Molho Pardo Premium", "Espaguete da Serra", "Galinhada Tropeira",
+                "Arroz com Suã da Várzea", "Moqueca de Pequi", "Frango Caipira Encantado", "Prato do Capiau"
+              ];
+              const vegetarianos = [
+                "Mineirinho Veggie", "Tropeiro Sem Boi", "Angu de Amor", "Canjiquinha Verde", "Feijoada Sem Culpa",
+                "Salada do Pomar", "Prato do Sítio", "Purê de Mandioquinha do Céu", "Escondidinho de Abóbora",
+                "Pimentão Encantado"
+              ];
+              const sobremesas = [
+                "Doce de Céu", "Goiabada Supimpa", "Bolo de Fubá da Comadre", "Cartola Mineira", "Pudim de Rapadura",
+                "Pé de Moleque da Tia Nena", "Canjica de Ouro", "Arroz Doce da Roça", "Manjar das Gerais",
+                "Cocada da Serra", "Mousse de Jabuticaba", "Ambrosia da Vó Leninha", "Quindim de Queijo",
+                "Doce de Mamão com Coco", "Paçoca de Colher", "Bolo Cremoso de Milho", "Banana com Canela na Chapa",
+                "Compota de Casca", "Doce de Leite do Arraial", "Gelatina Colorida da Festa Junina"
+              ];
+              const bebidas = [
+                "Café com Prosa", "Brisa da Serra", "Limonada da Horta", "Refresco da Roça", "Caneco do Cerrado",
+                "Suco da Estação", "Chá de Capim Santo", "Quentão das Gerais", "Água de Gota", "Guaraná do Brejo",
+                "Cachaça do Alambique", "Morango com Renda", "Vitamina da Fazenda", "Chá da Tarde com Biscoito",
+                "Café de Coar na Hora", "Licor da Nona", "Bebida da Sombra", "Água com Carvão",
+                "Drink do Tropeiro", "Caipirinha do Capiau"
+              ];
+              const extras = [
+                "Farofa do Sabiá", "Arroz com Alho da Mãe", "Manteiga da Chapa", "Couve Rasgada com Alho",
+                "Pimenta da Vó Nair", "Mandioca Frita Dourada", "Vinagrete da Roça", "Molho de Pequi Defumado",
+                "Quiabo Grelhado", "Purê de Abóbora com Cebola Roxa", "Torresmo Supremo",
+                "Banana da Terra na Manteiga", "Requeijão Cremoso Artesanal", "Fubá Tostado com Leite",
+                "Ovo Caipira com Salsa"
+              ];
+              function gerarItens(nomes, categoria, precoBase) {
+                return nomes.map((nome, i) => `
+                  <div class="item-cardapio" data-category="${categoria}">
+                    <div class="nome">${nome}</div>
+                    <div class="valor" data-price="${(precoBase + (i % 5) * 2).toFixed(2)}">R$ ${(precoBase + (i % 5) * 2).toFixed(2).replace('.', ',')}</div>
+                    <div class="categoria">${categoria}</div>
+                    <div class="controls">
+                      <button class="del-item">–</button>
+                      <span class="quantity">0</span>
+                      <button class="add-item">+</button>
+                    </div>
+                  </div>
+                `).join('');
+              }
+              document.write(
+                gerarItens(entradas, 'Entrada', 10) +
+                gerarItens(pratos, 'Prato', 25) +
+                gerarItens(vegetarianos, 'Vegetariano', 20) +
+                gerarItens(sobremesas, 'Sobremesa', 12) +
+                gerarItens(bebidas, 'Bebida', 8) +
+                gerarItens(extras, 'Extra', 6)
+              );
+            </script>
+
+          </div>
+        </div>
+      </div>
+
+      <footer class="resumo-pedido">
+        <span>Total: <strong id="total-price">R$ 0,00</strong></span>
+        <button class="botao" id="concluir">Concluir</button>
+        <button class="botao botao-voltar" onclick="history.back()">Voltar</button>
+      </footer>
+    </main>
+  </div>
+
+  <script src="CardapioJS.js"></script>
+</body>
+</html>
