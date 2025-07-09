@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Redirecionamentos (insira suas URLs nos placeholders)
     document.getElementById('btn-inserir-reserva')?.addEventListener('click', () => {
-      window.location.href = ''; // URL do seu Cardápio
+      window.location.href = '../VerCardapio/GerenciarCardapio.html'; // URL do seu Cardápio
     });
 
     document.getElementById('btn-cadastrar-reserva')?.addEventListener('click', () => {
