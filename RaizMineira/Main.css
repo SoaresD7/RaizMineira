@@ -141,7 +141,8 @@ body, html {
 /* Botão Logout */
 .botao.logout {
   background-color: var(--vermelho-suave);
-  grid-row: span 2;
+  grid-row: span ;
+  grid-column: span 2;
 }
 
 .botao.logout:hover {
