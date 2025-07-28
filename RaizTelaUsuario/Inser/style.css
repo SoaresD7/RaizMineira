@@ -1,54 +1,32 @@
 :root {
-  --fundo-principal: rgb(248, 188, 96);
-  --fundo-caixa: #ffdcad;
-  --laranja: #f7a440;
-  --laranja-hover: #f5a452;
-  --verde: #4caf50;
-  --vermelho: #f44336;
-  --texto-escuro: #3a2f2f;
-  --texto-totulo: #a56e1a;
+  --fundo-principal: #fab956;
+  --fundo-caixa:     #ffdcad;
+  --laranja:         #f7a440;
+  --laranja-hover:   #f5a452;
+  --verde:           #4caf50;
+  --vermelho:        #f44336;
+  --texto-escuro:    #3a2f2f;
+  --texto-titulo:    #a56e1a;
 }
 
-/* Reset básico */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Corpo da página */
+/* Layout geral */
 body, html {
   width: 100%;
   min-height: 100vh;
   background: var(--fundo-principal);
   font-family: Arial, sans-serif;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 1rem;
   color: var(--texto-escuro);
-  position: relative;
-}
-
-/* ----- Botão Voltar ----- */
-.botao-fechar {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 8px 14px;
-  background-color: #ffebc3;
-  color: var(--laranja);
-  border: 2px solid var(--laranja);
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  z-index: 999;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
-}
-.botao-fechar:hover {
-  background-color: var(--laranja-hover);
-  color: #fff;
 }
 
 /* Container do formulário */
@@ -56,96 +34,113 @@ body, html {
   background: var(--fundo-caixa);
   padding: 2rem;
   border-radius: 12px;
-  width: 100%;
   max-width: 400px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
   text-align: center;
 }
 
 /* Título */
-h2 {
+.form-container h2 {
   margin-bottom: 2rem;
+  color: var(--texto-titulo);
   font-size: 1.8rem;
-  color: var(--texto-totulo);
 }
 
-/* Grupos de campos */
+/* Campos */
 .form-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .form-group label {
-  margin-bottom: 0.5rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .form-group input {
-  width: 90%;
-  max-width: 300px;
-  padding: 0.6rem;
-  border: 2px solid #ddd;
-  border-radius: 10px;
+  width: 100%;
+  padding: 0.75rem;
   font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
   transition: border-color 0.3s ease;
 }
+
 .form-group input:focus {
   outline: none;
   border-color: var(--laranja);
 }
 
-/* Mensagens de erro */
+/* Mensagem de erro */
 .error {
-  margin-top: 0.3rem;
-  font-size: 0.875rem;
   color: var(--vermelho);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
   min-height: 1em;
 }
 
-/* Botão de envio */
-.btn-submit {
-  width: 70%;
-  max-width: 200px;
-  padding: 0.8rem;
-  background: var(--laranja);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
+/* Botões */
+.btn-submit, .btn-voltar {
+  width: 100%;
+  padding: 1rem;
   font-size: 1.1rem;
   font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+/* Inserir */
+.btn-submit {
+  background: var(--laranja);
+  color: #fff;
 }
 .btn-submit:hover {
   background: var(--laranja-hover);
 }
 
-/* ----- Toast de feedback ----- */
+/* Voltar */
+.btn-voltar {
+  background: #fff;
+  color: var(--laranja);
+  border: 2px solid var(--laranja);
+}
+.btn-voltar:hover {
+  background: var(--laranja);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+/* Toast */
 .toast {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  min-width: 180px;
-  padding: 1rem;
-  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
   color: #fff;
   font-weight: bold;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
   transform: translateY(20px);
-  z-index: 999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
 }
+
 .toast.show {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
+
 .toast.success {
   background: var(--verde);
 }
+
 .toast.error {
   background: var(--vermelho);
 }
