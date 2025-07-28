@@ -1,14 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form     = document.getElementById('consultaForm');
-  const nome     = document.getElementById('nome');
-  const cpf      = document.getElementById('cpf');
-  const toast    = document.getElementById('toast');
-  const btnBack  = document.getElementById('voltar-reservas');
-
-  // Botão Voltar funcionando
-  /*btnBack.addEventListener('click', () => {
-    window.location.href = '../Inicio/UsarioTela.html'; 
-  });*/
+  const form  = document.getElementById('consultaForm');
+  const nome  = document.getElementById('nome');
+  const cpf   = document.getElementById('cpf');
+  const toast = document.getElementById('toast');
 
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -17,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!nome.value.trim()) {
       return setError('nomeError', 'Digite seu nome.');
     }
-
     if (!/^\d{11}$/.test(cpf.value)) {
       return setError('cpfError', 'Digite 11 dígitos numéricos.');
     }
@@ -29,9 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (encontrado) {
         showToast('Reserva encontrada!', 'success');
-        setTimeout(() => {
-          window.location.href = ''; 
-        }, 2000);
+        // redirecione ou exiba detalhes aqui
       } else {
         showToast('Reserva não encontrada.', 'error');
       }

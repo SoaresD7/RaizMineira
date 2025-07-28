@@ -1,37 +1,30 @@
 // Aguarda carregamento completo do DOM
 document.addEventListener('DOMContentLoaded', () => {
-  // Referências aos elementos do formulário
   const form         = document.getElementById('reservaForm');
   const dataInput    = document.getElementById('data');
   const timeInput    = document.getElementById('hora');
   const listaIndispo = document.getElementById('listaIndisponiveis');
   const toast        = document.getElementById('toast');
 
-  // Array para simular horários já reservados
   let reservedSlots = [];
 
-  // Ao mudar a data, ajusta limites de horário e mostra indisponíveis
+  // Ajusta horários e exibe indisponíveis ao mudar a data
   dataInput.addEventListener('change', () => {
-    clearErrors();             // limpa erros antigos
-    timeInput.value = '';      
+    clearErrors();
+    timeInput.value = '';
     listaIndispo.innerHTML = '';
 
     const val = dataInput.value;
     if (!val) return;
 
     const day = new Date(val).getDay();
-    // Qui–Sáb
     if ([4,5,6].includes(day)) {
       timeInput.min = '11:00';
       timeInput.max = '23:59';
-    }
-    // Domingo
-    else if (day === 0) {
+    } else if (day === 0) {
       timeInput.min = '11:00';
       timeInput.max = '23:00';
-    }
-    // Outros dias sem restrição
-    else {
+    } else {
       timeInput.min = '';
       timeInput.max = '';
     }
@@ -40,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reservedSlots = ['12:00', '14:30', '19:00'];
     reservedSlots.forEach(h => {
       const li = document.createElement('li');
-      li.textContent = `${h} — indisponível`;
+      li.textContent = `${h} — indisponível — todas as mesas foram ocupadas.`;
       listaIndispo.appendChild(li);
     });
   });
@@ -50,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     clearErrors();
 
-    // Checa campos obrigatórios
     if (!form.nome.value)      return setError('nomeError', 'Digite seu nome.');
     if (!form.cpf.value)       return setError('cpfError', 'Digite seu CPF.');
     if (!dataInput.value)      return setError('dataError', 'Escolha uma data.');
@@ -60,20 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (!form.pessoas.value)   return setError('pessoasError', 'Informe nº de pessoas.');
     if (!form.telefone.value)  return setError('telefoneError', 'Digite seu telefone.');
-    if (!form.email.value)     return setError('emailError', 'Digite seu e‑mail.');
+    if (!form.email.value)     return setError('emailError', 'Digite seu e-mail.');
 
-    // Mostra “Verificando...”
+    // Alerta de verificação
     showToast('Verificando...', 'success');
 
     // Simula processo de cadastro
     setTimeout(() => {
-      const sucesso = true; // troque pela sua lógica real
-
+      const sucesso = true;
       if (sucesso) {
         showToast('Reserva cadastrada com sucesso!', 'success');
-        // Após 2s, retorna à tela principal
+        // Redireciona após confirmação
         setTimeout(() => {
-          window.location.href = '../Inicio/UsarioTela.html';
+          window.location.href = '../Inicio/UsuarioTela.html';
         }, 2000);
       } else {
         showToast('Erro ao cadastrar. Tente novamente.', 'error');
@@ -94,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Controla o toast de feedback
   function showToast(message, tipo) {
     toast.textContent = message;
-    toast.className = `toast show ${tipo}`;   // ex: "toast show success"
+    toast.className = `toast show ${tipo}`; 
     clearTimeout(toast.hideTimer);
     toast.hideTimer = setTimeout(() => {
       toast.classList.remove('show');
