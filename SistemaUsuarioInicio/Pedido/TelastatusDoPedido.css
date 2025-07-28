@@ -1,6 +1,6 @@
 :root {
   --fundo-principal: #f7b14b;    /* Laranja mais vibrante que o antigo #fab956 */
-  --fundo-caixa:     #fce8b2;    /* Tom mais suave e claro para as caixas */
+  --fundo-caixa:     #feddb0;    /* Tom mais suave e claro para as caixas */
   --fundo-caixa2:    #f9f1dd;    /* Fundo ainda mais claro para botões e áreas secundárias */
   --laranja:         #f4a742;    /* Laranja principal */
   --laranja-hover:   #e88f33;    /* Laranja hover mais escuro e quente */
@@ -18,7 +18,7 @@
 html, body {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--fundo-principal) 0%, #ffd88f 100%);
+  background: linear-gradient(135deg, var(--fundo-principal) 0%, #f9bc60 100%);
   font-family: 'Segoe UI', Tahoma, sans-serif;
   color: var(--texto-escuro);
 }
@@ -140,36 +140,23 @@ html, body {
   color: var(--texto-escuro);
   font-weight: bold;
 }
-
-/* Botões */
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.buttons button {
+/* Botã2 */
+.btn-refresh {
   padding: 0.85rem;
-  background: var(--laranja);
-  color: #fff;
+  background:#f3aa4e;
+  color: #ffffff;
   border: none;
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
-}
-.buttons button:hover {
-  background: var(--laranja-hover);
-  transform: scale(1.03);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Botão Voltar melhorado */
+/* Botã1 */
 .btn-back {
-  background: var(--fundo-caixa2);
-  color: var(--texto-escuro);
+  background: #fddeb3;
+  color: var #fff;
   font-weight: 600;
   padding: 0.85rem;
   border-radius: 10px;
@@ -177,11 +164,31 @@ html, body {
   font-size: 1rem;
   transition: background 0.2s, transform 0.2s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
 }
+
 .btn-back:hover {
   background: var(--fundo-caixa);
   transform: scale(1.03);
 }
+
+/* Botões */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.buttons button:hover {
+  background: var(--laranja-hover);
+  transform: scale(1.03);
+}
+
 
 /* Responsividade */
 @media (max-width: 600px) {

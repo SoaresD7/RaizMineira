@@ -3,7 +3,7 @@
 /* === Variáveis de cor === */
 :root {
   --fundo-principal: #f7b14b;
-  --fundo-caixa: #fce8b2;
+  --fundo-caixa: #fddeb3;
   --fundo-caixa2: #f9f1dd;
   --laranja: #f4a742;
   --laranja-hover: #e88f33;
@@ -127,7 +127,7 @@ body {
   display: none;
 }
 .radio-item .checkmark {
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 0.2rem;
   border: 2px solid var(--laranja);
   border-radius: 10px;
   background: var(--fundo-caixa2);

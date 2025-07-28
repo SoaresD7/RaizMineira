@@ -24,6 +24,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Botão: Ver Comanda
   document.getElementById('btn-ver-minhas-reservas')?.addEventListener('click', () => {
-    window.location.href = '../Comanda/Comanda.html'; // Substitua pelo caminho real da sua comanda
+    window.location.href = '../Comanda/Comanda.html';
   });
 });
