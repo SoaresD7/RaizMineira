@@ -1,84 +1,39 @@
-const telaBloqueio = document.getElementById('tela-bloqueio');
-const telaSenha = document.getElementById('tela-senha');
 const telaPrincipal = document.getElementById('tela-principal');
-const senhaInput = document.getElementById('senha');
-const botaoLogout = document.querySelector('.logout');
-const botaoFechar = document.querySelector('.botao-fechar');
-
-// Animação de desbloqueio ao clicar na tela de bloqueio
-telaBloqueio.addEventListener('click', () => {
-  telaBloqueio.classList.add('subindo');
-  telaBloqueio.addEventListener('animationend', () => {
-    telaBloqueio.classList.add('escondido');
-    telaSenha.classList.remove('escondido');
-  }, { once: true });
-});
-
-// Validar senha no Enter
-senhaInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const senha = senhaInput.value;
-    if (senha === '1234') {
-      telaSenha.classList.add('escondido');
-      telaPrincipal.classList.remove('escondido');
-
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Acesso liberado!",
-        background: "#fff3e0",
-        color: "#3a2f2f",
-        showConfirmButton: false,
-        timer: 1500,
-        didOpen: () => {
-          const icon = Swal.getPopup().querySelector('.swal2-success-line-tip');
-          const icon2 = Swal.getPopup().querySelector('.swal2-success-line-long');
-          const circle = Swal.getPopup().querySelector('.swal2-success-ring');
-          if (icon && icon2 && circle) {
-            icon.style.background = '#f7a440';
-            icon2.style.background = '#f7a440';
-            circle.style.borderColor = '#f7a440';
-          }
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Senha incorreta",
-        text: "Tente novamente",
-        background: "#fff3e0",
-        color: "#3a2f2f",
-        confirmButtonColor: "#f7a440",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
-  }
-});
-
-// Logout volta para tela de bloqueio
-botaoLogout.addEventListener('click', () => {
-  telaPrincipal.classList.add('escondido');
-
-  // Remove a animação e mostra a tela de bloqueio
-  telaBloqueio.classList.remove('subindo');
-  telaBloqueio.classList.remove('escondido');
-
-  telaSenha.classList.add('escondido');
-  senhaInput.value = '';
-});
-
-// Botão fechar programa na tela de bloqueio (fecha a aba)
-botaoFechar.addEventListener('click', (e) => {
-  e.stopPropagation();
-  window.close();
-});
 
 // Redirecionamento dos botões
 window.abrirPagina = function(caminho) {
   window.location.href = caminho;
 };
 
+
+// Função para buscar o número de pedidos do localStorage
+function atualizarContadorPedidos() {
+  let pedidos = [];
+  try {
+    pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+  } catch (e) {
+    pedidos = [];
+  }
+  const contador = document.querySelector('.contador-pedidos');
+  const notificacao = document.querySelector('.notificacao-pedidos');
+  contador.textContent = pedidos.length;
+  if (pedidos.length > 1) {
+    notificacao.classList.add('ativa');
+  } else {
+    notificacao.classList.remove('ativa');
+  }
+}
+
 window.abrirPaginaPedidos = function() {
-  alert("Funcionalidade de Acompanhamento de Pedidos ainda não implementada.");
+  // Remove notificação ao clicar
+  const notificacao = document.querySelector('.notificacao-pedidos');
+  notificacao.classList.remove('ativa');
+  window.location.href = './Pedidos/Pedidos.html';
 };
+
+// Atualiza o contador ao carregar a página
+window.addEventListener('DOMContentLoaded', atualizarContadorPedidos);
+
+document.querySelector('.logout').addEventListener('click', () => {
+  window.location.href = './Bloqueio/Bloqueio.html';
+});

@@ -1,3 +1,36 @@
+/* Contador de pedidos e notificação */
+.contador-pedidos-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+}
+.contador-pedidos {
+  background: #fff;
+  color: var(--laranja);
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px 12px;
+  font-size: 1.1rem;
+  min-width: 32px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.notificacao-pedidos {
+  display: none;
+  position: absolute;
+  top: -6px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  background: #e53935;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  z-index: 2;
+}
+.notificacao-pedidos.ativa {
+  display: block;
+}
 :root {
   --fundo-principal: #fff3e0;
   --fundo-caixa: #ffdcad;
@@ -160,4 +193,20 @@ input[type="password"] {
 
 .subindo {
   animation: subirTela 0.8s forwards;
+}
+
+/* Animação de zoom e fade-in */
+@keyframes zoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.caixa-grade, .grid-botoes {
+  animation: zoomFadeIn 0.3s cubic-bezier(0.4,0,0.2,1);
 }

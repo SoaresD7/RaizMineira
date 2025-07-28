@@ -1,0 +1,96 @@
+/* TelaInicio.css */
+
+/* Paleta de cores do sistema */
+:root {
+  --fundo-principal: #fff3e0;
+  --fundo-caixa:     #ffdcad;
+  --fundo-tela:      #fab956;
+  --laranja:         #f7a440;
+  --laranja-hover:   #f5a452;
+  --vermelho-suave:  #f29595;
+  --vermelho-hover:  #e17b7b;
+  --texto-escuro:    #3a2f2f;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fundo e fonte */
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: var(--fundo-principal);
+  color: var(--texto-escuro);
+}
+
+/* Full-screen centering */
+.tela {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: var(--fundo-tela);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Caixa central */
+.caixa-grade {
+  background-color: var(--fundo-caixa);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 360px;
+  overflow: hidden;
+}
+
+/* Elementos ocultos */
+.escondido {
+  display: none;
+}
+
+/* Grid de botões */
+.grid-botoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Botões */
+.botao {
+  background-color: var(--laranja);
+  padding: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.botao:hover {
+  background-color: var(--laranja-hover);
+  transform: translateY(-3px);
+}
+
+/* Animações */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeOutUp {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-20px); }
+}
+
+#opcoes-reserva {
+  display: none;
+}

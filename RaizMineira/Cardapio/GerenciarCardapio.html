@@ -4,21 +4,113 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerenciar Cardápio</title>
+  <link rel="stylesheet" href="../a.Referencia/Template.css" />
   <link rel="stylesheet" href="CardapioCSS.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Gerenciar Cardápio</h1>
-    <div class="grid">
-      <button>Adicionar Item</button>
-      <button>Editar Item</button>
-      <button>Remover Item</button>
-      <button>Voltar</button>
+  <div class="tela">
+    <div class="menu-lateral">
+      <button class="botao grande">Adicionar Item</button>
+      <button class="botao">Editar Item</button>
+      <button class="botao">Remover Item</button>
+      <button class="botao botao-voltar" onclick="window.location.href='../Main.html'">Voltar</button>
+    </div>
+    <div class="conteudo-principal">
+      <h1 style="text-align:center; margin-bottom: 24px;">Gerenciar Cardápio</h1>
+      <div class="painel-cardapio-scroll">
+        <div class="tabela-cardapio">
+          <!-- Exemplo de itens -->
+          <div class="linha-cardapio">
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 1</div>
+              <div class="valor">R$ 20,00</div>
+              <div class="categoria">Prato</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 2</div>
+              <div class="valor">R$ 8,00</div>
+              <div class="categoria">Bebida</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 3</div>
+              <div class="valor">R$ 15,00</div>
+              <div class="categoria">Especial</div>
+            </div>
+          </div>
+          <div class="linha-cardapio">
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 4</div>
+              <div class="valor">R$ 7,00</div>
+              <div class="categoria">Acompanhamento</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 5</div>
+              <div class="valor">R$ 10,00</div>
+              <div class="categoria">Prato</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 6</div>
+              <div class="valor">R$ 5,00</div>
+              <div class="categoria">Bebida</div>
+            </div>
+          </div>
+          <!-- Novas linhas adicionadas -->
+          <div class="linha-cardapio">
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 7</div>
+              <div class="valor">R$ 12,00</div>
+              <div class="categoria">Prato</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 8</div>
+              <div class="valor">R$ 6,00</div>
+              <div class="categoria">Acompanhamento</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 9</div>
+              <div class="valor">R$ 18,00</div>
+              <div class="categoria">Especial</div>
+            </div>
+          </div>
+          <div class="linha-cardapio">
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 10</div>
+              <div class="valor">R$ 9,00</div>
+              <div class="categoria">Bebida</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 11</div>
+              <div class="valor">R$ 22,00</div>
+              <div class="categoria">Prato</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 12</div>
+              <div class="valor">R$ 11,00</div>
+              <div class="categoria">Acompanhamento</div>
+            </div>
+          </div>
+          <div class="linha-cardapio">
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 13</div>
+              <div class="valor">R$ 25,00</div>
+              <div class="categoria">Especial</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 14</div>
+              <div class="valor">R$ 4,00</div>
+              <div class="categoria">Bebida</div>
+            </div>
+            <div class="item-cardapio">
+              <div class="nome">Exemplo 15</div>
+              <div class="valor">R$ 13,00</div>
+              <div class="categoria">Prato</div>
+            </div>
+          </div>
+          <!-- Adicione mais linhas conforme necessário -->
+        </div>
+      </div>
     </div>
   </div>
-  <footer>
-    <p>@reizmineira</p>
-  </footer>
   <script src="CardapioJS.js"></script>
 </body>
 </html>
