@@ -25,9 +25,9 @@ body, html {
   justify-content: center;
   padding: 1rem;
   color: var(--texto-escuro);
-  position: relative;
 }
 
+/* Container */
 .form-container {
   background: var(--fundo-caixa);
   padding: 2rem;
@@ -65,7 +65,6 @@ h2 {
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
-
 .form-group input:focus {
   outline: none;
   border-color: var(--laranja);
@@ -78,32 +77,41 @@ h2 {
   min-height: 1em;
 }
 
-.lista-indisponiveis {
-  list-style: none;
-  margin-top: 0.5rem;
-  padding: 0;
-  color: var(--vermelho);
-  font-size: 0.875rem;
-}
-.lista-indisponiveis li {
-  opacity: 0.8;
-}
-
-.btn-submit {
+/* ===== Botões (Ver Reserva e Voltar) ===== */
+.btn-action {
+  display: inline-block;
   width: 70%;
   max-width: 250px;
   padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Ver Reserva */
+.btn-consultar {
   background: var(--laranja);
   color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
 }
-.btn-submit:hover {
+.btn-consultar:hover {
   background: var(--laranja-hover);
+  transform: translateY(-2px);
+}
+
+/* Voltar */
+.btn-voltar {
+  background: #ffebc3;
+  color: var(--laranja);
+  border: 2px solid var(--laranja);
+}
+.btn-voltar:hover {
+  background: var(--laranja-hover);
+  color: #fff;
   transform: translateY(-2px);
 }
 
@@ -135,37 +143,10 @@ h2 {
   background: var(--vermelho);
 }
 
-/* Botão Voltar com seta */
-.botao-voltar {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  padding: 8px 14px;
-  background-color: #ffebc3;
-  color: var(--laranja);
-  border: 2px solid var(--laranja);
-  border-radius: 6px;
-  font-weight: bold;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.075);
-}
-.botao-voltar:hover {
-  background-color: var(--laranja-hover);
-  color: #fff;
-  transform: translateY(-2px);
-}
-
 /* Responsividade */
 @media (max-width: 480px) {
-  .form-container {
-    padding: 1.5rem;
-  }
-  .btn-submit {
-    width: 100%;
-  }
-  .form-group input {
+  .form-group input,
+  .btn-action {
     width: 100%;
   }
 }

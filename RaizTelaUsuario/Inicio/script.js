@@ -1,28 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Referência às telas de boas-vindas e principal
-  const welcome = document.getElementById('welcome-screen');
-  const main   = document.getElementById('main-screen');
-
-  if (welcome && main) {
-    // Troca de telas após 4 segundos
-    setTimeout(() => {
-      welcome.style.display = 'none';          // Esconde tela de boas-vindas
-      main.classList.remove('hidden');         // Mostra tela principal
-    }, 4000);
-
-    // Redireciona ao clicar nos botões
-    document.getElementById('btn-inserir-reserva')?.addEventListener('click', () => {
-      window.location.href = '../Inser/Inserir.html';
-    });
-
-    document.getElementById('btn-cadastrar-reserva')?.addEventListener('click', () => {
-      window.location.href = '../Cadastro/Cadastro.html';
-    });
-
-    document.getElementById('btn-ver-minhas-reservas')?.addEventListener('click', () => {
-      window.location.href = '../Esqueceu/index.html';
-    });
-  }
+  // Redireciona ao clicar nos botões (caso existam na tela)
+  document.getElementById('btn-inserir-reserva')?.addEventListener('click', () => {
+    window.location.href = '../Inser/Inserir.html';
+  });
+  document.getElementById('btn-cadastrar-reserva')?.addEventListener('click', () => {
+    window.location.href = '../Cadastro/Cadastro.html';
+  });
+  document.getElementById('btn-ver-minhas-reservas')?.addEventListener('click', () => {
+    window.location.href = '../Esqueceu/index.html';
+  });
 
   // Verifica se estamos na página de consultar reserva
   const form = document.getElementById('consultaForm');

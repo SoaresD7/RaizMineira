@@ -8,8 +8,6 @@
   --texto-escuro: #3a2f2f;
   --texto-titulo: #a56e1a;
 }
-
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +26,7 @@ body, html {
   color: var(--texto-escuro);
 }
 
-/* Container do formulário */
+/* Container */
 .form-container {
   background: var(--fundo-caixa);
   padding: 2rem;
@@ -39,14 +37,12 @@ body, html {
   text-align: center;
 }
 
-/* Título */
 h2 {
   margin-bottom: 2rem;
   font-size: 1.8rem;
   color: var(--texto-titulo);
 }
 
-/* Grupos de campos */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -73,7 +69,23 @@ h2 {
   border-color: var(--laranja);
 }
 
-/* Erros */
+.form-group textarea {
+  width: 90%;
+  max-width: 350px;
+  padding: 0.6rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  min-height: 32px;
+  max-height: 120px;
+  resize: none;
+}
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--laranja);
+}
+
 .error {
   margin-top: 0.3rem;
   font-size: 0.875rem;
@@ -81,52 +93,29 @@ h2 {
   min-height: 1em;
 }
 
-/* Lista de indisponíveis */
-.lista-indisponiveis {
-  list-style: none;
-  margin-top: 0.5rem;
-  padding: 0;
-  color: var(--vermelho);
-  font-size: 0.875rem;
-}
-.lista-indisponiveis li {
-  opacity: 0.8;
-}
-
-/* ===== Botões (Enviar e Voltar) ===== */
+/* ===== Botões (Ver Reserva e Voltar) ===== */
 .btn-action {
   display: inline-block;
-  width: 70%;           /* mesma largura para ambos */
+  width: 70%;
   max-width: 250px;
-  padding: 0.8rem;      /* mesma altura para ambos */
+  padding: 0.8rem;
   font-size: 1.1rem;
   font-weight: bold;
   border-radius: 6px;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
-}
-
-/* Estilo do Enviar */
-.btn-action[type="submit"],
-.btn-action.btn-enviar {
-  background: var(--laranja);
-  color: #fff;
+  text-decoration: none;
   border: none;
 }
-.btn-action[type="submit"]:hover,
-.btn-action.btn-enviar:hover {
-  background: var(--laranja-hover);
-}
 
-/* Estilo do Voltar */
-.btn-action.btn-voltar {
+/* Voltar */
+.btn-voltar {
   background: #ffebc3;
   color: var(--laranja);
   border: 2px solid var(--laranja);
-  text-decoration: none;
 }
-.btn-action.btn-voltar:hover {
+.btn-voltar:hover {
   background: var(--laranja-hover);
   color: #fff;
   transform: translateY(-2px);
@@ -158,4 +147,15 @@ h2 {
 }
 .toast.error {
   background: var(--vermelho);
+}
+
+@media (max-width: 480px) {
+  .form-group input,
+  .btn-action,
+  .form-group textarea {
+    width: 100%;
+  }
+  .form-container {
+    padding: 1rem;
+  }
 }
