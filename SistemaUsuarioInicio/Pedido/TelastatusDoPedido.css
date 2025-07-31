@@ -1,0 +1,300 @@
+/* Quadrado principal envolvendo todo o conteúdo */
+.main-square {
+  background: #fcdfb6;
+  border: 4px solid var(--laranja);
+  border-radius: 24px;
+  max-width: 600px;
+  margin: 2.5rem auto 0 auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 60vh;
+}
+
+@media (max-width: 600px) {
+  .main-square {
+    max-width: 98vw;
+    padding: 1rem 0.3rem 1.2rem 0.3rem;
+    border-width: 2px;
+    min-height: 80vh;
+  }
+}
+:root {
+  --fundo-principal: #f7b14b;    /* Laranja mais vibrante que o antigo #fab956 */
+  --fundo-caixa:     #feddb0;    /* Tom mais suave e claro para as caixas */
+  --fundo-caixa2:    #f9f1dd;    /* Fundo ainda mais claro para botões e áreas secundárias */
+  --laranja:         #f4a742;    /* Laranja principal */
+  --laranja-hover:   #e88f33;    /* Laranja hover mais escuro e quente */
+  --texto-escuro:    #5a3b00;    /* Marrom escuro para melhor contraste que o anterior */
+  --status-color:    #4caf50;    /* Verde dos status permanece */
+}
+
+/* Reset e global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--fundo-principal) 0%, #f9bc60 100%);
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: var(--texto-escuro);
+}
+
+.header {
+  text-align: center;
+  padding: 1rem 0;
+}
+.header h1 {
+  font-size: 1.6rem;
+  color: #b07219;  /* Marrom dourado parecido com a imagem */
+}
+
+
+.container {
+  padding: 1rem;
+}
+
+.order-card {
+  background: #f8f1de;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  transition: transform 0.2s;
+}
+.order-card:hover {
+  transform: translateY(-4px);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-id {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.order-time {
+  font-size: 0.9rem;
+  color: var(--texto-escuro);
+}
+
+.order-items {
+  list-style: none;
+  padding-left: 1rem;
+}
+.order-items li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+.order-items li::before {
+  content: '➤';
+  position: absolute;
+  left: 0;
+  color: var(--laranja);
+  font-size: 1rem;
+  top: 0;
+}
+
+/* Barra de progresso */
+.progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: 1rem 0;
+  padding: 0 10px;
+}
+.progress::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 4px;
+  background: rgba(0,0,0,0.08); /* ligeiramente mais claro */
+  transform: translateY(-50%);
+  border-radius: 2px;
+  z-index: 0;
+}
+.step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  flex: 1;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: rgba(90, 59, 0, 0.5); /* usando a cor texto-escuro com alpha */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.3s ease;
+}
+.step .circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffffcc;
+  border: 2px solid var(--laranja);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.step.active .circle {
+  background: var(--status-color);
+  border-color: var(--status-color);
+  width: 22px;
+  height: 22px;
+}
+.step.active {
+  color: var(--texto-escuro);
+  font-weight: bold;
+}
+/* Botã2 */
+.btn-refresh {
+  padding: 0.85rem;
+  background:#f3aa4e;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botã1 */
+.btn-back {
+  background: #fae6cd;
+  color: #000000;
+  font-weight: 600;
+  padding: 0.85rem;
+  border-radius: 10px;
+  border: 1.8px solid var(--laranja);
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-back:hover {
+  background: var(--fundo-caixa);
+  transform: scale(1.03);
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  min-width: 50px;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.buttons button:hover {
+  background: var(--laranja-hover);
+  transform: scale(1.03);
+}
+
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.4rem;
+  }
+  .order-card {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .buttons {
+    width: 100%;
+  }
+.buttons button {
+  width: 200%;
+  max-width: none;
+  align-self: center;
+}
+  .step {
+    font-size: 0.75rem;
+  }
+  .step .circle {
+    width: 14px;
+    height: 14px;
+  }
+  .step.active .circle {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Estilos do alerta customizado */
+.custom-alert {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.custom-alert.hidden {
+  display: none;
+}
+
+.custom-alert-content {
+  background: var(--fundo-caixa);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  color: var(--texto-escuro);
+  font-size: 1rem;
+  user-select: none;
+}
+
+.custom-alert-content p {
+  margin-bottom: 1rem;
+}
+
+.custom-alert-content button {
+  background: var(--laranja);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.custom-alert-content button:hover,
+.custom-alert-content button:focus {
+  background: var(--laranja-hover);
+  outline: none;
+}
