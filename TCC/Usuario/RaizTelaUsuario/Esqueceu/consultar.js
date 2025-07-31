@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (valid) {
-      window.location.href = '../Verificar reservas/index.html';
+      window.location.href = 'Verificar reservas/index.html';
     }
   });
 
