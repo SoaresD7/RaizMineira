@@ -6,54 +6,40 @@
   <title>Minha Reserva</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
-</html>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minha Reserva</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
 <body>
-  <div class="form-container">
+  <div class="form-container" id="reservaContainer">
     <h2>Minha Reserva</h2>
-    <form id="reservaForm" novalidate>
-      <div class="form-group">
-        <label>Nome</label>
-        <span id="nome" class="info-text">João da Silva</span>
-      </div>
-      <div class="form-group">
-        <label>CPF</label>
-        <span id="cpf" class="info-text">12345678901</span>
-      </div>
-      <div class="form-group">
-        <label>Data da Reserva</label>
-        <span id="data" class="info-text">10/08/2025</span>
-      </div>
-      <div class="form-group">
-        <label>Horário</label>
-        <span id="hora" class="info-text">19:30</span>
-      </div>
-      <div class="form-group">
-        <label>Quantidade de Pessoas</label>
-        <span id="qtdPessoas" class="info-text">4</span>
-      </div>
-      <div class="form-group">
-        <label>Número da Mesa</label>
-        <span id="numeroMesa" class="info-text">6</span>
-      </div>
-      <div class="form-group">
-        <label>Observação</label>
-        <span id="observacao" class="info-text">Mesa próxima à janela.</span>
-      </div>
-      <div class="form-group">
-        <a href="../Esqueceu/index.html" class="btn-action btn-voltar">Voltar</a>
-      </div>
-    </form>
+
+    <div class="form-group">
+      <label>Nome</label>
+      <span id="nome" class="info-text">--</span>
+    </div>
+    <div class="form-group">
+      <label>CPF</label>
+      <span id="cpf" class="info-text">--</span>
+    </div>
+    <div class="form-group">
+      <label>Data da Reserva</label>
+      <span id="data" class="info-text">--</span>
+    </div>
+    <div class="form-group">
+      <label>Horário</label>
+      <span id="hora" class="info-text">--</span>
+    </div>
+    <div class="form-group">
+      <label>Quantidade de Pessoas</label>
+      <span id="qtdPessoas" class="info-text">--</span>
+    </div>
+    <div class="form-group">
+      <label>Observação</label>
+      <span id="observacao" class="info-text">--</span>
+    </div>
+
+    <button class="btn-action btn-voltar" id="btnVoltar">Voltar</button>
   </div>
+
   <div id="toast" class="toast"></div>
-  <script src="verReserva.js" defer></script>
+
+  <script src="verReserva.js"></script>
 </body>
 </html>

@@ -55,45 +55,19 @@ h2 {
   font-weight: bold;
 }
 
-.form-group input {
+.form-group span.info-text {
   width: 90%;
   max-width: 350px;
   padding: 0.6rem;
   border: 2px solid #ddd;
   border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-.form-group input:focus {
-  outline: none;
-  border-color: var(--laranja);
+  background: #fff;
+  text-align: left;
+  user-select: none;
 }
 
-.form-group textarea {
-  width: 90%;
-  max-width: 350px;
-  padding: 0.6rem;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-  min-height: 32px;
-  max-height: 120px;
-  resize: none;
-}
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--laranja);
-}
-
-.error {
-  margin-top: 0.3rem;
-  font-size: 0.875rem;
-  color: var(--vermelho);
-  min-height: 1em;
-}
-
-/* ===== Botões (Ver Reserva e Voltar) ===== */
+/* Botões */
 .btn-action {
   display: inline-block;
   width: 70%;
@@ -107,9 +81,10 @@ h2 {
   cursor: pointer;
   text-decoration: none;
   border: none;
+  margin: 0.5rem auto 0;
+  display: block;
 }
 
-/* Voltar */
 .btn-voltar {
   background: #ffebc3;
   color: var(--laranja);
@@ -150,9 +125,8 @@ h2 {
 }
 
 @media (max-width: 480px) {
-  .form-group input,
-  .btn-action,
-  .form-group textarea {
+  .form-group span.info-text,
+  .btn-action {
     width: 100%;
   }
   .form-container {
