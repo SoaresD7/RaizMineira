@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Reserva</title>
+  <link rel="stylesheet" href="EditarReservas.css" />
+</head>
+<body>
+  <div class="tela">
+    <div class="caixa-grade" style="max-width: 400px; margin: auto;">
+      <h1 style="text-align:center; margin-bottom: 24px;">Editar Reserva</h1>
+      <div class="formulario-reserva">
+        <input type="text" placeholder="Nome" class="input-reserva" />
+        <input type="number" placeholder="Nº Reserva" class="input-reserva" />
+        <input type="number" placeholder="Nº Mesa" class="input-reserva" min="1" max="24" />
+        <input type="date" class="input-reserva" />
+        <input type="time" class="input-reserva" />
+        <select class="input-reserva">
+          <option value="Confirmado">Confirmado</option>
+          <option value="Pendente">Pendente</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <button class="botao" style="flex:1;">Salvar</button>
+          <button class="botao botao-voltar" style="flex:1;">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="EditarReservas.js"></script>
+</body>
+</html>
