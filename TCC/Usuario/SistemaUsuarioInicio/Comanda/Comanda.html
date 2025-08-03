@@ -1,3 +1,4 @@
+<!-- Comanda.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,8 +14,9 @@
 
   <main class="container">
     <section class="comanda-card" aria-label="Resumo da Comanda">
-      <p class="intro-text">Você pediu:</p>
-      <ul class="order-items" aria-label="Itens do Pedido">
+      <p class="intro-text">Seu pedido:</p>
+
+      <ul class="order-items">
         <li>
           <span class="item-name">Petisco da Roça</span>
           <span class="item-price">R$ 18,00</span>
@@ -29,7 +31,6 @@
         </li>
       </ul>
 
-      <!-- Forma de pagamento destacada -->
       <div class="pagamento-opcoes">
         <label class="pagamento-label">Forma de Pagamento:</label>
         <div class="botoes-radio">
@@ -48,33 +49,24 @@
         </div>
       </div>
 
-      <!-- Total abaixo da forma de pagamento -->
       <div class="total-section">
         <strong>Total:</strong> <span id="total">R$ 31,00</span>
       </div>
-    </section>
 
-    <section class="botoes" aria-label="Ações da Comanda">
-      <button class="btn-destaque" onclick="chamarGarcom()">Chamar Garçom</button>
-      <button class="btn-voltar" onclick="window.location.href='../Inicio/Inicio.html'">Voltar</button>
+      <div class="botoes">
+        <button class="btn-destaque" onclick="chamarGarcom()">Chamar Garçom</button>
+        <button class="btn-voltar" onclick="window.history.back()">Voltar</button>
+      </div>
     </section>
   </main>
 
-  <!-- Alerta “Garçom a caminho” -->
-  <div id="alerta-garcom" class="custom-alert hidden" role="dialog" aria-modal="true" aria-labelledby="garcom-msg">
+  <div id="alerta-garcom" class="custom-alert hidden">
     <div class="custom-alert-content">
-      <p id="garcom-msg">Um garçom está a caminho 🍽️</p>
-      <button onclick="fecharAlerta()">OK</button>
+      <p>🍽️ Um garçom está a caminho</p>
+      <button id="fechar-alerta" class="btn-destaque">OK</button>
     </div>
   </div>
 
-  <script>
-    function chamarGarcom() {
-      document.getElementById("alerta-garcom").classList.remove("hidden");
-    }
-    function fecharAlerta() {
-      document.getElementById("alerta-garcom").classList.add("hidden");
-    }
-  </script>
+  <script src="Comanda.js"></script>
 </body>
 </html>

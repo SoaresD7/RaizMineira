@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const btnPagar = document.getElementById('btn-pagar');
-  const alerta = document.getElementById('alerta');
+  const alerta = document.getElementById('alerta-garcom');
   const fechar = document.getElementById('fechar-alerta');
 
-  btnPagar.addEventListener('click', () => {
-    alerta.classList.remove('hidden');
-  });
-
+  // Botão “OK” fecha o alerta
   fechar.addEventListener('click', () => {
     alerta.classList.add('hidden');
   });
 });
+
+// Função acionada ao clicar em “Chamar Garçom”
+function chamarGarcom() {
+  document.getElementById('alerta-garcom').classList.remove('hidden');
+}

@@ -1,94 +1,166 @@
-// Aguarda carregamento completo do DOM
-document.addEventListener('DOMContentLoaded', () => {
-  const form         = document.getElementById('reservaForm');
-  const dataInput    = document.getElementById('data');
-  const timeInput    = document.getElementById('hora');
-  const listaIndispo = document.getElementById('listaIndisponiveis');
-  const toast        = document.getElementById('toast');
+const duplas    = [[1,7],[6,12],[13,19],[18,24]];
+const ocupadas  = [3,7,12,18,21];
+let mesaSelecionada = null;
 
-  let reservedSlots = [];
+const descricoes = {
+  1:"Perto da janela",2:"Canto aconchegante",3:"Ao lado do bar",4:"Próxima à saída",
+  5:"Vista para jardim",6:"Mesa dupla central",7:"Perto do palco",8:"Ao fundo",
+  9:"Próxima ao vitral",10:"Esquina iluminada",11:"Central VIP",12:"Ao lado do aquário",
+  13:"Vista panorâmica",14:"Ambiente reservado",15:"Canto silencioso",16:"Perto da entrada",
+  17:"Mesa familiar",18:"Junto ao buffet",19:"Central ampla",20:"Próxima às plantas",
+  21:"Mesa comemorativa",22:"Ao lado do sofá",23:"Canto íntimo",24:"Em destaque"
+};
 
-  // Ajusta horários e exibe indisponíveis ao mudar a data
-  dataInput.addEventListener('change', () => {
-    clearErrors();
-    timeInput.value = '';
-    listaIndispo.innerHTML = '';
+const showToast = (msg,tipo) => {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast show ${tipo}`;
+  clearTimeout(t.hideTimer);
+  t.hideTimer = setTimeout(() => t.className = 'toast', 3000);
+};
 
-    const val = dataInput.value;
-    if (!val) return;
+const setError   = (id,msg) => document.getElementById(id).textContent = msg;
+const clearError = id      => document.getElementById(id).textContent = '';
 
-    const day = new Date(val).getDay();
-    if ([4,5,6].includes(day)) {
-      timeInput.min = '11:00';
-      timeInput.max = '23:59';
-    } else if (day === 0) {
-      timeInput.min = '11:00';
-      timeInput.max = '23:00';
-    } else {
-      timeInput.min = '';
-      timeInput.max = '';
+const btnSubmit  = document.getElementById('btn-submit'),
+      inputHora  = document.getElementById('hora'),
+      inputData  = document.getElementById('data');
+
+// Valida horário de funcionamento
+function validaHorario() {
+  clearError('horaError');
+  const d = inputData.value, h = inputHora.value;
+  if (!d||!h) { btnSubmit.disabled = false; return; }
+
+  const [Y,M,D]   = d.split('-').map(Number),
+        [H,Min]   = h.split(':').map(Number),
+        weekday   = new Date(Y,M-1,D,H,Min).getDay();
+
+  let ok = weekday === 0
+    ? (H>12&&H<23)||(H===13&&Min>=0)||(H===23&&Min===0)
+    : (H>12&&H<=23)||(H===13&&Min>=0);
+
+  if (!ok) {
+    setError('horaError','Fora do horário de funcionamento');
+    btnSubmit.disabled = true;
+    inputHora.style.color = 'var(--cinza-info)';
+  } else {
+    btnSubmit.disabled = false;
+    inputHora.style.color = '';
+  }
+}
+
+inputHora.addEventListener('change', validaHorario);
+inputData.addEventListener('change', validaHorario);
+
+// Voltar sempre para index.html
+document.getElementById('btnVoltar').onclick = () => {
+  window.location.href = '../Inicio/UsuarioTela.html';
+};
+
+// Abre popup de escolha de mesa
+document.getElementById('btn-escolher-mesa').onclick = () => {
+  document.getElementById('popup-mesas').classList.remove('hidden');
+  renderGrid();
+  document.getElementById('mesa-info').style.display = 'none';
+};
+
+// Fecha popup
+document.getElementById('btn-fechar-popup').onclick = () => {
+  document.getElementById('popup-mesas').classList.add('hidden');
+};
+
+function isDupla(n) {
+  return duplas.some(pair => pair.includes(n));
+}
+
+function renderGrid() {
+  const grid = document.getElementById('grid-mesas');
+  grid.innerHTML = '';
+  for (let i = 1; i <= 24; i++) {
+    if (duplas.some(p => p[1] === i)) continue;
+    const btn = document.createElement('button');
+    btn.dataset.num = i;
+    btn.className  = 'btn-mesa';
+    if (isDupla(i)) btn.classList.add('dupla');
+    if (ocupadas.includes(i)) {
+      btn.classList.add('ocupada');
+      btn.disabled = true;
     }
+    btn.onclick = () => {
+      document.querySelectorAll('.btn-mesa').forEach(x => x.classList.remove('selecionada'));
+      btn.classList.add('selecionada');
+      mesaSelecionada = i;
+      document.getElementById('mesa-info').style.display = 'block';
 
-    // Simula slots já ocupados
-    reservedSlots = ['12:00', '14:30', '19:00'];
-    reservedSlots.forEach(h => {
-      const li = document.createElement('li');
-      li.textContent = `${h} — indisponível — todas as mesas foram ocupadas.`;
-      listaIndispo.appendChild(li);
-    });
-  });
+      document.getElementById('status-mesa').textContent =
+        ocupadas.includes(i) ? 'Ocupada'
+      : isDupla(i)           ? 'Mesa dupla'
+                             : 'Mesa simples';
 
-  // Validação e submissão do formulário
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    clearErrors();
+      document.getElementById('descricao-mesa').textContent = descricoes[i];
 
-    if (!form.nome.value)      return setError('nomeError', 'Digite seu nome.');
-    if (!form.cpf.value)       return setError('cpfError', 'Digite seu CPF.');
-    if (!dataInput.value)      return setError('dataError', 'Escolha uma data.');
-    if (!timeInput.value)      return setError('horaError', 'Escolha um horário.');
-    if (reservedSlots.includes(timeInput.value)) {
-      return setError('horaError', 'Horário indisponível.');
-    }
-    if (!form.pessoas.value)   return setError('pessoasError', 'Informe nº de pessoas.');
-    if (!form.telefone.value)  return setError('telefoneError', 'Digite seu telefone.');
-    if (!form.email.value)     return setError('emailError', 'Digite seu e-mail.');
+      const sel = document.getElementById('qtd-lugares');
+      sel.value = '';
+      Array.from(sel.options).forEach(o => {
+        o.style.display = (o.value>4 && !isDupla(i)) ? 'none' : '';
+      });
+    };
+    grid.appendChild(btn);
+  }
+}
 
-    // Alerta de verificação
-    showToast('Verificando...', 'success');
+// Confirma seleção de mesa
+document.getElementById('btn-confirmar-mesa').onclick = () => {
+  const qtd = document.getElementById('qtd-lugares').value;
+  if (!mesaSelecionada || !qtd) {
+    setError('mesaError','Selecione mesa e lugares');
+    return;
+  }
+  document.getElementById('btn-escolher-mesa').textContent =
+    `Mesa ${mesaSelecionada} (${qtd})`;
+  document.getElementById('popup-mesas').classList.add('hidden');
+  clearError('mesaError');
+};
 
-    // Simula processo de cadastro
-    setTimeout(() => {
-      const sucesso = true;
-      if (sucesso) {
-        showToast('Reserva cadastrada com sucesso!', 'success');
-        // Redireciona após confirmação
-        setTimeout(() => {
-          window.location.href = '../Inicio/UsuarioTela.html';
-        }, 2000);
-      } else {
-        showToast('Erro ao cadastrar. Tente novamente.', 'error');
-      }
-    }, 2000);
-  });
+// Ao enviar o formulário, redireciona para outro index.html
+document.getElementById('reservaForm').addEventListener('submit', e => {
+  e.preventDefault();
+  ['nomeError','cpfError','emailError','telefoneError','dataError','horaError','mesaError']
+    .forEach(clearError);
 
-  // Exibe mensagem de erro em <span> específico
-  function setError(id, msg) {
-    document.getElementById(id).textContent = msg;
+  let ok = true,
+      v  = id => document.getElementById(id).value.trim();
+
+  if (!v('nome')) {
+    setError('nomeError','Digite seu nome'); ok = false;
+  }
+  if (!/^\d{11}$/.test(v('cpf').replace(/\D/g,''))) {
+    setError('cpfError','CPF inválido'); ok = false;
+  }
+  if (!/\S+@\S+\.\S+/.test(v('email'))) {
+    setError('emailError','E-mail inválido'); ok = false;
+  }
+  if (!v('telefone')) {
+    setError('telefoneError','Digite seu telefone'); ok = false;
+  }
+  if (!v('data')) {
+    setError('dataError','Escolha a data'); ok = false;
+  }
+  if (!v('hora')) {
+    setError('horaError','Escolha o horário'); ok = false;
+  }
+  if (!mesaSelecionada) {
+    setError('mesaError','Selecione mesa'); ok = false;
+  }
+  if (!ok) {
+    showToast('Corrija os erros','error');
+    return;
   }
 
-  // Limpa todas as mensagens de erro
-  function clearErrors() {
-    document.querySelectorAll('.error').forEach(el => el.textContent = '');
-  }
-
-  // Controla o toast de feedback
-  function showToast(message, tipo) {
-    toast.textContent = message;
-    toast.className = `toast show ${tipo}`; 
-    clearTimeout(toast.hideTimer);
-    toast.hideTimer = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
-  }
+  showToast('Confirmando reserva...','success');
+  setTimeout(() => {
+    // Redireciona após sucesso
+    window.location.href = '../Esqueceu/index.html';
+  }, 1200);
 });

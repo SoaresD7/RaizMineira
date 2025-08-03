@@ -1,9 +1,11 @@
+// Filtrar itens por categoria
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const category = btn.getAttribute('data-category');
+    const category = btn.dataset.category;
     document.querySelectorAll('.item-cardapio').forEach(item => {
-      item.style.display =
-        category === 'all' || item.dataset.category === category ? 'flex' : 'none';
+      item.style.display = (category === 'all' || item.dataset.category === category)
+        ? 'flex'
+        : 'none';
     });
   });
 });
@@ -14,32 +16,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const voltarBtn = document.getElementById('voltar');
   const concluirBtn = document.getElementById('concluir');
 
+  // Atualiza o total
   function atualizarTotal() {
     let soma = 0;
     items.forEach(item => {
-      const qty = parseInt(item.querySelector('.quantity').textContent, 10);
-      const price = parseFloat(item.querySelector('.valor').dataset.price);
+      const qty = +item.querySelector('.quantity').textContent;
+      const price = +item.querySelector('.valor').dataset.price;
       soma += qty * price;
     });
-    totalPrice.textContent = `R$ ${soma.toFixed(2).replace('.', ',')}`;
+    totalPrice.textContent = `R$ ${soma.toFixed(2).replace('.', ',')}`;
   }
 
+  // Botão Voltar
   voltarBtn.addEventListener('click', () => {
-    window.location.href = '../Inicio/Inicio.html';
+    window.location.href = '../Inicio/UsuarioTelaInicio.html';
   });
 
+  // Controle de quantidade
   items.forEach(item => {
     const btnAdd = item.querySelector('.add-item');
     const btnDel = item.querySelector('.del-item');
     const qtyEl = item.querySelector('.quantity');
 
     btnAdd.addEventListener('click', () => {
-      qtyEl.textContent = parseInt(qtyEl.textContent, 10) + 1;
+      qtyEl.textContent = +qtyEl.textContent + 1;
       atualizarTotal();
     });
-
     btnDel.addEventListener('click', () => {
-      let v = parseInt(qtyEl.textContent, 10);
+      let v = +qtyEl.textContent;
       if (v > 0) {
         qtyEl.textContent = v - 1;
         atualizarTotal();
@@ -47,33 +51,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  concluirBtn.addEventListener('click', () => {
-    const valor = totalPrice.textContent;
-    const alertBox = document.createElement('div');
-    alertBox.className = 'alerta-personalizado';
-    alertBox.innerHTML = `
+  // Alerta modal
+  function showAlert(title, message) {
+    document.body.style.overflow = 'hidden';
+    const overlay = document.createElement('div');
+    overlay.className = 'alerta-personalizado';
+    overlay.innerHTML = `
       <div class="caixa-alerta">
-        <h2>Pedido Concluído!</h2>
-        <p>Total do pedido: <strong>${valor}</strong></p>
+        <h2>${title}</h2>
+        <p>${message}</p>
         <button id="btn-fechar-alerta">OK</button>
-      </div>
-    `;
-    document.body.appendChild(alertBox);
+      </div>`;
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add('visible'));
 
-    document.getElementById('btn-fechar-alerta').addEventListener('click', () => {
-      alertBox.remove();
+    overlay.querySelector('#btn-fechar-alerta').addEventListener('click', () => {
+      overlay.classList.remove('visible');
+      overlay.addEventListener('transitionend', () => {
+        overlay.remove();
+        document.body.style.overflow = '';
+      }, { once: true });
     });
+  }
+
+  // Concluir pedido
+  concluirBtn.addEventListener('click', () => {
+    showAlert('Pedido Concluído!', `Total do pedido: <strong>${totalPrice.textContent}</strong>`);
   });
 
-  const reposicionarConcluir = () => {
-    const resumo = document.querySelector('.resumo-pedido');
-    if (window.innerWidth > 600) {
-      if (!lateral.contains(concluirBtn)) lateral.appendChild(concluirBtn);
-    } else {
-      if (!resumo.contains(concluirBtn)) resumo.appendChild(concluirBtn);
-    }
-  };
-
-  window.addEventListener('resize', reposicionarConcluir);
-  reposicionarConcluir();
+  atualizarTotal();
 });
