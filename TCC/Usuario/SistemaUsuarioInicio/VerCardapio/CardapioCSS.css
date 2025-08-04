@@ -1,0 +1,274 @@
+:root {
+  --neon-primary:   #fab956;
+  --neon-hover:     rgba(250, 185, 86, 0.85);
+  --glass-bg:       rgba(20, 15, 10, 0.6);
+  --pane-bg:        rgba(254, 220, 173, 0.9);
+  --light-text:     #fefefe;
+  --dark-text:      #3a2f2f;
+  --accent-green:   #388e3c;
+}
+
+/* Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fundo com imagem + overlay */
+body {
+  font-family: sans-serif;
+  color: var(--light-text);
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url("../../../Imagens/Restaurante.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Layout principal */
+.tela {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+/* Menu lateral */
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--glass-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  width: 200px;
+}
+.menu-lateral .botao {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--neon-primary);
+  color: var(--dark-text);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 6px var(--neon-primary);
+  transition: background 0.2s;
+}
+.menu-lateral .botao:hover {
+  background: var(--neon-hover);
+}
+
+/* Keyframes para animação neon glow */
+@keyframes neonGlow {
+  from {
+    text-shadow:
+      0 0 4px var(--neon-primary),
+      0 0 8px var(--neon-primary),
+      0 0 12px var(--neon-primary);
+  }
+  to {
+    text-shadow:
+      0 0 8px var(--neon-primary),
+      0 0 16px var(--neon-primary),
+      0 0 24px var(--neon-primary);
+  }
+}
+
+/* Neon effect animado nos títulos dos itens do cardápio */
+.item-cardapio .nome {
+  font-weight: bold;
+  font-size: 1.125rem;
+  color: var(--neon-primary);
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
+}
+
+/* Conteúdo principal */
+.conteudo-principal {
+  flex: 1;
+  max-width: 900px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  overflow-y: auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  color: var(--neon-primary);
+  text-shadow: 0 0 8px var(--neon-primary);
+}
+
+/* Cardápio scroll */
+.painel-cardapio-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.linha-cardapio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+/* Item do cardápio (container) */
+.item-cardapio {
+  background: var(--pane-bg);
+  border: 2px solid var(--neon-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+  width: 100%;
+  max-width: 260px;
+}
+.item-cardapio:hover {
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  transform: translateY(-4px);
+}
+
+.item-cardapio .valor {
+  font-size: 1rem;
+  color: var(--accent-green);
+}
+.item-cardapio .categoria {
+  align-self: flex-start;
+  background: rgba(254,254,254,0.2);
+  border: 1px solid var(--neon-primary);
+  border-radius: 8px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--light-text);
+}
+
+/* Controles de quantidade */
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+.controls button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--neon-primary);
+  color: var(--dark-text);
+  cursor: pointer;
+  box-shadow: 0 0 6px var(--neon-primary);
+  transition: background 0.2s;
+}
+.controls button:hover {
+  background: var(--neon-hover);
+}
+.controls .quantity {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Resumo e botões finais */
+.resumo-pedido {
+  margin-top: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.resumo-pedido #total-price {
+  font-size: 1.25rem;
+  color: var(--light-text);
+}
+.botao, .botao-voltar {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid var(--neon-primary);
+  box-shadow: 0 0 8px var(--neon-primary);
+  transition: background 0.2s;
+}
+.botao {
+  background: var(--neon-primary);
+  color: #000;
+}
+.botao:hover {
+  background: var(--neon-hover);
+}
+.botao-voltar {
+  background: var(--pane-bg);
+  color: var(--dark-text);
+}
+.botao-voltar:hover {
+  background: rgba(254,220,173,1);
+}
+
+/* Alerta animado */
+.alerta-personalizado {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  z-index: 1000;
+}
+.alerta-personalizado.visible {
+  opacity: 1; pointer-events: all;
+}
+.alerta-personalizado.hidden {
+  opacity: 0;
+}
+.caixa-alerta {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  padding: 2rem; border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  max-width: 90%; width: 320px; text-align: center;
+  color: var(--light-text);
+  transform: scale(0.95); transition: transform 0.3s;
+}
+.alerta-personalizado.visible .caixa-alerta {
+  transform: scale(1);
+}
+.caixa-alerta h2 {
+  margin-bottom: 1rem;
+  color: var(--neon-primary);
+  text-shadow: 0 0 8px var(--neon-primary);
+}
+.caixa-alerta button {
+  margin-top: 1.5rem; padding: 0.6rem 1.2rem;
+  background: var(--neon-primary); color: #000;
+  border: none; border-radius: 8px; cursor: pointer;
+  box-shadow: 0 0 6px var(--neon-primary);
+  transition: background 0.2s;
+}
+.caixa-alerta button:hover {
+  background: var(--neon-hover);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .tela { flex-direction: column; gap: 1rem; padding: 0.5rem; }
+  .menu-lateral {
+    flex-direction: row; overflow-x: auto;
+    white-space: nowrap; gap: 0.5rem;
+    padding: 0.5rem; width: auto;
+  }
+  .conteudo-principal { padding: 1rem; max-width: none; }
+  h1 { font-size: 1.5rem; }
+  .linha-cardapio { display: flex; flex-direction: column; }
+  .item-cardapio { max-width: none; }
+}

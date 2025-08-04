@@ -1,0 +1,187 @@
+/* ============ Variáveis de tema ============ */
+:root {
+  --neon-primary: #fab956;
+  --neon-hover: rgba(250, 185, 86, 0.85);
+  --glass-bg: rgba(20, 15, 10, 0.6);       /* vidro mais escuro */
+  --text-light: #fefefe;
+  --text-dark: #3a2f2f;
+  --shadow-dark: rgba(0, 0, 0, 0.6);       /* sombra mais intensa */
+  --error-red: #f44336;
+  --success-green: #4caf50;
+}
+
+/* ===== Reset básico ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Fundo com imagem + overlay ESCURO ===== */
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: url('../../../../Imagens/paodequeijo2.png') center/cover no-repeat;
+  filter: brightness(0.5) contrast(1.2) saturate(1.1);
+  z-index: -2;
+}
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+/* ===== Container glass ===== */
+.tela {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
+}
+.form-container {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px) brightness(0.9);
+  border: 1px solid var(--neon-primary);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 8px 40px var(--shadow-dark);
+  text-align: center;
+  color: var(--text-light);
+  z-index: 1;
+}
+
+/* ===== Título ===== */
+.form-container h2 {
+  font-family: 'Cookie', cursive;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  color: var(--neon-primary);
+  text-shadow:
+    0 0 8px var(--neon-primary),
+    0 0 20px var(--neon-hover);
+}
+
+/* ===== Campos ===== */
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--text-light);
+}
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+  transition: background 0.3s, border-color 0.3s;
+}
+.form-group input::placeholder {
+  color: #ddd;
+}
+.form-group input:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--neon-primary);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== Mensagens de erro ===== */
+.error {
+  display: block;
+  height: 1em;
+  margin-top: 0.3rem;
+  font-size: 0.875rem;
+  color: var(--error-red);
+}
+
+/* ===== Botões ===== */
+.btn-action {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  background: var(--neon-primary);
+  color: var(--text-dark);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(250, 185, 86, 0.4);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-action:hover:not(:disabled) {
+  background: var(--neon-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(250, 185, 86, 0.5);
+}
+.btn-action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Estilo específico para “Voltar” */
+.btn-voltar {
+  background: transparent;
+  color: var(--neon-primary);
+  border: 2px solid var(--neon-primary);
+  box-shadow: none;
+}
+.btn-voltar:hover {
+  background: var(--neon-primary);
+  color: var(--text-dark);
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  color: #fff;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 1002;
+}
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.toast.success { background: var(--success-green); }
+.toast.error   { background: var(--error-red); }
+
+/* ===== Responsividade ===== */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 2rem 1.5rem;
+  }
+  .form-group input,
+  .btn-action {
+    width: 100%;
+  }
+}

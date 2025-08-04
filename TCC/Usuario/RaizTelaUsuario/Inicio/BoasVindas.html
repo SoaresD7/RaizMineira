@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bem-vindo</title>
+  <style>
+    :root {
+      --fundo-tela: #fab956;
+      --texto-claro: #fffbe9;
+      --texto-sombra: #a47027;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("../../../Imagens/ImageInicial.png");
+      background-color: rgba(250, 185, 86, 0.5); /* mesma tonalidade */
+      background-blend-mode: multiply;           /* mescla com a imagem */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #welcome-screen {
+      opacity: 1;
+      transition: opacity 1s;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    #welcome-screen.fade-out {
+      opacity: 0;
+    }
+
+    #logo-nome {
+      font-size: 2.7rem;
+      color: var(--texto-claro);
+      font-family: 'Segoe Script', 'Comic Sans MS', 'Pacifico', cursive, sans-serif;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 2px 4px 12px var(--texto-sombra), 0 1px 0 #fff;
+      margin-bottom: 0.5rem;
+      transition: opacity 0.7s, transform 0.7s;
+    }
+
+    #typed-text {
+      font-size: 1.5rem;
+      color: var(--texto-claro);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+      min-height: 2.2rem;
+      transition: opacity 0.5s;
+      text-shadow: 1px 2px 8px var(--texto-sombra);
+    }
+  </style>
+</head>
+<body>
+  <div id="welcome-screen">
+    <div id="logo-nome">Raiz Mineira</div>
+    <div id="typed-text"></div>
+  </div>
+
+  <script>
+    const logo = document.getElementById('logo-nome');
+    const typed = document.getElementById('typed-text');
+    const welcome = document.getElementById('welcome-screen');
+
+    logo.style.opacity = 0;
+    logo.style.transform = 'translateY(40px)';
+    typed.style.opacity = 0;
+
+    setTimeout(() => {
+      logo.style.transition = 'opacity 0.7s, transform 0.7s';
+      logo.style.opacity = 1;
+      logo.style.transform = 'translateY(0)';
+    }, 200);
+
+    setTimeout(() => {
+      logo.style.transition = 'transform 0.7s';
+      logo.style.transform = 'translateY(-48px)';
+      typed.style.opacity = 1;
+      const text = 'Seja bem-vindo!';
+      let i = 0;
+      function type() {
+        if (i <= text.length) {
+          typed.textContent = text.slice(0, i);
+          i++;
+          setTimeout(type, 60);
+        }
+      }
+      setTimeout(type, 350);
+    }, 1400);
+
+    setTimeout(() => {
+      welcome.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'UsuarioTela.html';
+      }, 1000);
+    }, 3700);
+  </script>
+</body>
+</html>
