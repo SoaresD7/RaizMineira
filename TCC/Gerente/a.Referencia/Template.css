@@ -1,0 +1,74 @@
+:root {
+  --fundo-principal: #fff3e0;
+  --fundo-caixa: #ffdcad;
+  --fundo-tela: #fab956;
+  --laranja: #f7a440;
+  --laranja-hover: #f5a452;
+  --texto-escuro: #3a2f2f;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: var(--fundo-principal);
+  color: var(--texto-escuro);
+}
+
+/* Tela principal */
+.tela {
+  width: 100%;
+  height: 100vh;
+  background: var(--fundo-tela);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Caixa central */
+.caixa-grade {
+  background-color: var(--fundo-caixa);
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Grade de botões */
+.grid-botoes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 20px;
+  max-width: 600px;
+}
+
+/* Botões */
+.botao {
+  background-color: var(--laranja);
+  padding: 30px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  outline: none;
+}
+
+.botao:hover {
+  background-color: var(--laranja-hover);
+  transform: translateY(-3px);
+}
+
+.botao.grande {
+  grid-column: span 2;
+}

@@ -1,0 +1,166 @@
+/* ============ Variáveis de tema ============ */
+:root {
+  --neon-primary: #fab956;
+  --neon-hover: rgba(250, 185, 86, 0.85);
+  --glass-bg: rgba(40, 30, 20, 0.6); /* Mais escuro */
+  --text-light: #fefefe;
+  --text-dark: #3a2f2f;
+  --shadow-dark: rgba(0, 0, 0, 0.55); /* Sombra mais intensa */
+  --error-red: #f44336;
+  --success-green: #4caf50;
+}
+
+/* ===== Reset ===== */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+/* ===== Fundo com imagem e escurecimento ===== */
+body, html {
+  width: 100%; min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: url('../../../Imagens/pao de queijo fundo.png') center/cover no-repeat;
+  filter: brightness(0.55) contrast(1.2) saturate(1.1); /* Mais escuro */
+  z-index: -2;
+}
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* leve escurecimento a mais */
+  z-index: -1;
+}
+
+/* ===== Container glass ===== */
+.tela {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
+}
+.form-container {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) brightness(0.9); /* Mais blur e contraste */
+  border: 1px solid var(--neon-primary);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  max-width: 400px; width: 100%;
+  box-shadow: 0 8px 35px var(--shadow-dark); /* Sombra mais intensa */
+  text-align: center;
+  color: var(--text-light);
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ===== Título ===== */
+.form-container h2 {
+  font-family: 'Cookie', cursive;
+  font-size: 2.3rem;
+  color: var(--text-light);
+  text-shadow:
+    0 0 6px var(--neon-primary),
+    0 0 12px var(--neon-hover);
+  margin-bottom: 1.5rem;
+}
+
+/* ===== Campos ===== */
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--text-light);
+}
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--neon-primary);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Erro ===== */
+.error {
+  display: block;
+  height: 1em;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--error-red);
+}
+
+/* ===== Botões ===== */
+.btn-submit, .btn-voltar {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+}
+
+/* Inserir */
+.btn-submit {
+  background: var(--neon-primary);
+  color: var(--text-dark);
+  box-shadow: 0 4px 12px rgba(250, 185, 86, 0.35);
+}
+.btn-submit:hover {
+  background: var(--neon-hover);
+  transform: translateY(-2px);
+}
+
+/* Voltar */
+.btn-voltar {
+  background: transparent;
+  color: var(--neon-primary);
+  border: 2px solid var(--neon-primary);
+}
+.btn-voltar:hover {
+  background: var(--neon-primary);
+  color: var(--text-dark);
+  transform: translateY(-2px);
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  color: #fff;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.toast.success {
+  background: var(--success-green);
+}
+.toast.error {
+  background: var(--error-red);
+}

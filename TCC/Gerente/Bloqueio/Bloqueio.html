@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloqueio</title>
+  <link rel="stylesheet" href="Bloqueio.css" />
+</head>
+<body>
+  <div id="tela-bloqueio" class="tela">
+    <div class="conteudo-bloqueio">Clique para desbloquear</div>
+    <button class="botao-fechar" title="Fechar">&#x2715;</button>
+    <button class="botao-desligar" title="Desligar" onclick="desligarSistema()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="#f44336" stroke-width="2" fill="none"/>
+        <path d="M12 7V13" stroke="#f44336" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+  <div id="tela-senha" class="tela escondido">
+    <div class="conteudo-senha">
+      <h2>Digite a senha</h2>
+      <input type="password" id="senha" placeholder="Senha" />
+    </div>
+  </div>
+  <script src="Bloqueio.js"></script>
+</body>
+</html>

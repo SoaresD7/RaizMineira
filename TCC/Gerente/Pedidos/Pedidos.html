@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedidos</title>
+  <link rel="stylesheet" href="Pedidos.css" />
+</head>
+<body>
+  <div class="tela">
+    <div class="caixa-grade">
+      <h2 class="titulo">Lista de Pedidos</h2>
+      <div style="display: flex; justify-content: flex-end; gap: 16px; margin-bottom: 16px;">
+        <button class="botao" onclick="window.location.reload()">&#8635; Reload</button>
+        <button class="botao botao-voltar" onclick="window.location.href='../Main.html'">&#8592; Voltar</button>
+      </div>
+      <div id="lista-pedidos">
+        <!-- Os pedidos serão inseridos aqui pelo JS -->
+      </div>
+    </div>
+  </div>
+  <script src="Pedidos.js"></script>
+</body>
+</html>
