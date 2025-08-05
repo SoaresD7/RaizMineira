@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fazer Reserva</title>
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="form-container">
+    <h2>Fazer Reserva</h2>
+    <p class="info">
+      Aberto de Segunda a Sábado: 13:00–00:00;<br>
+      Domingo: 13:00–23:00
+    </p>
+    <form id="reservaForm" novalidate>
+      <div class="form-group">
+        <label for="nome">Nome do Cliente</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required/>
+        <span class="error" id="nomeError"></span>
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" placeholder="Apenas números" maxlength="14" required/>
+        <span class="error" id="cpfError"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="seu@exemplo.com" required/>
+        <span class="error" id="emailError"></span>
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" placeholder="(xx) xxxx-xxxx" required/>
+        <span class="error" id="telefoneError"></span>
+      </div>
+      <div class="form-group">
+        <label for="data">Data</label>
+        <input type="date" id="data" required/>
+        <span class="error" id="dataError"></span>
+      </div>
+      <div class="form-group">
+        <label for="hora">Horário</label>
+        <input type="time" id="hora" required/>
+        <span class="error" id="horaError"></span>
+        <span class="info-cinza">12:–– sem horário disponível – restaurante lotado</span>
+      </div>
+      <div class="form-group">
+        <button type="button" id="btn-escolher-mesa" class="btn-action">Escolher Mesa &amp; Lugares</button>
+        <span class="error" id="mesaError"></span>
+      </div>
+      <button type="submit" id="btn-submit" class="btn-action">Confirmar Reserva</button>
+      <button type="button" id="btnVoltar" class="btn-action btn-voltar">Voltar</button>
+    </form>
+  </div>
+
+  <!-- Popup de Mesas -->
+  <div id="popup-mesas" class="popup-mesas hidden">
+    <div class="popup-content">
+      <h3>Selecione uma mesa</h3>
+      <div id="grid-mesas" class="grid-mesas"></div>
+      <div id="mesa-info" class="mesa-info" style="display:none">
+        <div id="status-mesa"></div>
+        <div id="descricao-mesa"></div>
+        <div id="select-lugares">
+          <label for="qtd-lugares">Lugares:</label>
+          <select id="qtd-lugares">
+            <option value="">Selecione</option>
+            <option value="1">1</option><option value="2">2</option>
+            <option value="3">3</option><option value="4">4</option>
+            <option value="5">5</option><option value="6">6</option>
+          </select>
+        </div>
+        <button id="btn-confirmar-mesa" class="btn-action">Confirmar</button>
+      </div>
+      <button id="btn-fechar-popup" class="btn-action btn-voltar" style="width:100%;margin-top:1rem">Fechar</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
