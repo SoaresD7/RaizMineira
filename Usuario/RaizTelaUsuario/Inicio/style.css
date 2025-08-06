@@ -1,0 +1,80 @@
+/* ============ Variáveis de tema ============ */
+:root {
+  --neon-primary: #fab956;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --text-light: #fefefe;
+  --shadow-dark: rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Reset básico ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Tela de fundo ===== */
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+.tela {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('../../../Imagens/ImageInicial.png') center/cover no-repeat;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+/* ===== Caixa central ===== */
+.caixa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(10px);
+  background: var(--glass-bg);
+  border: 1px solid var(--neon-primary);
+  border-radius: 1.5rem;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px var(--shadow-dark);
+  width: 90%;
+  max-width: 380px;
+}
+
+/* ===== Título ===== */
+.caixa h2 {
+  font-family: 'Cookie', cursive;
+  font-size: 2.8rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+/* ===== Botões (todos laranja) ===== */
+.botoes {
+  display: grid;
+  gap: 1.25rem;
+}
+.botoes button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 0;
+  color: var(--text-light);
+  background: var(--neon-primary);
+  border: 2px solid var(--neon-primary);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.botoes button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
