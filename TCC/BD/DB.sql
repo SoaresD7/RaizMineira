@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS itens_pedido (
 CREATE TABLE IF NOT EXISTS reservas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
+    cpf CHAR(11) NOT NULL,
     lugares INT NOT NULL DEFAULT 1,
     data_reserva DATE NOT NULL,
     hora_reserva TIME NOT NULL,
