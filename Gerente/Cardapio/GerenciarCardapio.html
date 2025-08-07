@@ -12,13 +12,7 @@
     <div class="menu-lateral">
       <div class="filtro-tags" style="background:#fff8e1; border-radius:12px; padding:1rem; margin-bottom:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.07);">
         <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.7rem;">
-          <button class="botao filter-btn" data-category="all" style="background:#f7a444; color:#fff;">Todos</button>
-          <button class="botao filter-btn" data-category="entrada">Entradas</button>
-          <button class="botao filter-btn" data-category="principal">Pratos Principais</button>
-          <button class="botao filter-btn" data-category="vegetariano">Pratos Vegetarianos</button>
-          <button class="botao filter-btn" data-category="sobremesa">Sobremesas</button>
-          <button class="botao filter-btn" data-category="bebida">Bebidas</button>
-          <button class="botao filter-btn" data-category="extra">Extras</button>
+          <!-- Botões de filtro serão gerados dinamicamente pelo CardapioJS.js -->
         </div>
       </div>
       <button class="botao grande" onclick="window.location.href='Adicionar/Editar/AdicionarItem.html'">Adicionar Item</button>
@@ -31,105 +25,12 @@
       <div class="painel-cardapio-scroll">
         <div class="tabela-cardapio">
           <div class="linha-cardapio">
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Trem Bão de Minas</div><div class="valor">R$ 12,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Petisco da Roça</div><div class="valor">R$ 10,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Anguzinho da Esquina</div><div class="valor">R$ 9,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Bolinho do Sertão</div><div class="valor">R$ 11,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Queijim no Capricho</div><div class="valor">R$ 13,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Pastel do Coreto</div><div class="valor">R$ 8,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Dadinho de Canastra</div><div class="valor">R$ 10,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Croquete do Curral</div><div class="valor">R$ 12,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Linguiça da Várzea</div><div class="valor">R$ 14,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Porção da Comadre</div><div class="valor">R$ 13,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Palitinho do Arraiá</div><div class="valor">R$ 7,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Couve Crocante do Zé</div><div class="valor">R$ 8,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Pão de Queijo Recheado</div><div class="valor">R$ 9,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Torresminho Caipira</div><div class="valor">R$ 12,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Mandioca do Fogão a Lenha</div><div class="valor">R$ 10,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Pimenta do Mato</div><div class="valor">R$ 6,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Chouriço Crocante</div><div class="valor">R$ 11,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Couve Crispy</div><div class="valor">R$ 7,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Provolone de Ouro</div><div class="valor">R$ 13,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="entrada"><div class="nome">Escondidinho da Estação</div><div class="valor">R$ 14,00</div><div class="categoria">Entrada</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Costelinha da Vovó Maria</div><div class="valor">R$ 32,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Franguim com Quiabo Supremo</div><div class="valor">R$ 28,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Tutu Valente</div><div class="valor">R$ 27,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Canjiquinha Real</div><div class="valor">R$ 25,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Vaca Atolada de Ouro</div><div class="valor">R$ 33,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Feijão Tropeiro do Cerrado</div><div class="valor">R$ 26,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Rabada do Sertão</div><div class="valor">R$ 31,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Picanha do Curral</div><div class="valor">R$ 39,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Arroz Carreteiro do Vale</div><div class="valor">R$ 24,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Leitão à Pururuca Imperial</div><div class="valor">R$ 38,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Peixim de Lagoa</div><div class="valor">R$ 29,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Baião de Dois das Gerais</div><div class="valor">R$ 23,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Panela do Sitiante</div><div class="valor">R$ 30,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Frango ao Molho Pardo Premium</div><div class="valor">R$ 34,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Espaguete da Serra</div><div class="valor">R$ 22,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Galinhada Tropeira</div><div class="valor">R$ 27,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Arroz com Suã da Várzea</div><div class="valor">R$ 26,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Moqueca de Pequi</div><div class="valor">R$ 29,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Frango Caipira Encantado</div><div class="valor">R$ 32,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="principal"><div class="nome">Prato do Capiau</div><div class="valor">R$ 25,00</div><div class="categoria">Prato Principal</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Mineirinho Veggie</div><div class="valor">R$ 24,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Tropeiro Sem Boi</div><div class="valor">R$ 22,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Angu de Amor</div><div class="valor">R$ 20,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Canjiquinha Verde</div><div class="valor">R$ 21,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Feijoada Sem Culpa</div><div class="valor">R$ 23,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Salada do Pomar</div><div class="valor">R$ 18,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Prato do Sítio</div><div class="valor">R$ 19,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Purê de Mandioquinha do Céu</div><div class="valor">R$ 20,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Escondidinho de Abóbora</div><div class="valor">R$ 21,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Pimentão Encantado</div><div class="valor">R$ 19,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Quiche de Queijo Minas</div><div class="valor">R$ 18,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Moqueca de Banana</div><div class="valor">R$ 20,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="vegetariano"><div class="nome">Escondidinho de Legumes</div><div class="valor">R$ 19,00</div><div class="categoria">Prato Vegetariano</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Doce de Céu</div><div class="valor">R$ 10,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Goiabada Supimpa</div><div class="valor">R$ 9,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Bolo de Fubá da Comadre</div><div class="valor">R$ 8,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Cartola Mineira</div><div class="valor">R$ 11,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Pudim de Rapadura</div><div class="valor">R$ 10,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Pé de Moleque da Tia Nena</div><div class="valor">R$ 7,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Canjica de Ouro</div><div class="valor">R$ 9,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Arroz Doce da Roça</div><div class="valor">R$ 8,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Manjar das Gerais</div><div class="valor">R$ 10,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Cocada da Serra</div><div class="valor">R$ 7,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Doce de Leite Cremoso</div><div class="valor">R$ 7,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Pudim Mineiro</div><div class="valor">R$ 8,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="sobremesa"><div class="nome">Ambrosia da Fazenda</div><div class="valor">R$ 9,00</div><div class="categoria">Sobremesa</div></div>
-            <div class="item-cardapio" data-category="bebida"><div class="nome">Suco de Laranja</div><div class="valor">R$ 6,00</div><div class="categoria">Bebida</div></div>
-            <div class="item-cardapio" data-category="bebida"><div class="nome">Água Mineral</div><div class="valor">R$ 4,00</div><div class="categoria">Bebida</div></div>
-            <div class="item-cardapio" data-category="bebida"><div class="nome">Refrigerante</div><div class="valor">R$ 5,00</div><div class="categoria">Bebida</div></div>
-            <div class="item-cardapio" data-category="extra"><div class="nome">Porção de Arroz</div><div class="valor">R$ 3,00</div><div class="categoria">Extra</div></div>
-            <div class="item-cardapio" data-category="extra"><div class="nome">Porção de Feijão</div><div class="valor">R$ 3,00</div><div class="categoria">Extra</div></div>
-            <div class="item-cardapio" data-category="extra"><div class="nome">Porção de Farofa</div><div class="valor">R$ 2,00</div><div class="categoria">Extra</div></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </script>
-<script>
-// Filtro de categorias do cardápio (funciona com todos os itens em uma única linha)
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const categoria = this.getAttribute('data-category');
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.style.background = '';
-      b.style.color = '';
-    });
-    this.style.background = '#f7a444';
-    this.style.color = '#fff';
-    document.querySelectorAll('.item-cardapio').forEach(item => {
-      const itemCat = (item.getAttribute('data-category') || '').toLowerCase();
-      if (categoria === 'all' || itemCat === categoria) {
-        item.style.display = '';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-});
 </script>
 <script src="CardapioJS.js"></script>
 </body>

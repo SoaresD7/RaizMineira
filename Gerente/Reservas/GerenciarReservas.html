@@ -11,7 +11,6 @@
   <div class="tela">
     <div class="painel-reservas">
       <div class="painel-botoes">
-        <button class="botao" id="btnAdicionar">Adicionar Reserva</button>
         <button class="botao" id="btnEditar">Editar Reserva</button>
         <button class="botao" id="btnCancelar">Cancelar Reserva</button>
         <button class="botao botao-voltar" id="btnVoltar">Voltar</button>
@@ -19,17 +18,22 @@
       <div class="tabela-reservas-container">
         <div class="tabela-reservas-header">
           <h1 style="text-align:center; margin-bottom: 0;">Gerenciar Reservas</h1>
+          <div style="display:flex; justify-content:center; margin: 1rem 0 0.5rem 0;">
+            <input type="text" id="barraPesquisaReservas" placeholder="Pesquisar reservas..." style="width: 60%; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid #ffe0b2; font-size: 1rem; background: #fff8e1; color: #333;" />
+          </div>
         </div>
         <div class="tabela-reservas-scroll">
           <table class="tabela-reservas">
             <thead>
               <tr>
-                <th>Nome</th>
-                <th>Nº Reserva</th>
-                <th>Nº Mesa</th>
+                <th>Nome do Cliente</th>
+                <th>Número da Reserva</th>
+                <th>CPF</th>
+                <th>E-mail</th>
                 <th>Data</th>
-                <th>Hora</th>
-                <th>Status</th>
+                <th>Horário</th>
+                <th>Mesa</th>
+                <th>Lugares</th>
               </tr>
             </thead>
             <tbody id="corpoTabelaReservas">

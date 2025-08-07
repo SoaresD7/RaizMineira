@@ -13,11 +13,14 @@
       <div class="formulario-cardapio">
         <input type="text" placeholder="Nome do Item" class="input-cardapio" />
         <input type="number" placeholder="Valor (R$)" class="input-cardapio" min="0" step="0.01" />
+        <input type="text" placeholder="Descrição do prato" class="input-cardapio" />
         <select class="input-cardapio">
-          <option value="Prato">Prato</option>
-          <option value="Bebida">Bebida</option>
-          <option value="Acompanhamento">Acompanhamento</option>
-          <option value="Especial">Especial</option>
+          <option value="Entrada">Entradas</option>
+          <option value="Principal">Pratos Principais</option>
+          <option value="Vegetariano">Pratos Vegetarianos</option>
+          <option value="Sobremesa">Sobremesas</option>
+          <option value="Bebida">Bebidas</option>
+          <option value="Extra">Extras</option>
         </select>
         <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
           <button class="botao" style="flex:1;">Adicionar</button>
