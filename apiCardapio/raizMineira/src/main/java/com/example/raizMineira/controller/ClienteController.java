@@ -1,5 +1,3 @@
-//Teste http://localhost:8080/api/"mesas"
-
 package com.example.raizMineira.controller;
 
 import java.util.List;
@@ -10,40 +8,42 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.raizMineira.model.Mesa;
-import com.example.raizMineira.service.MesaService;
+import com.example.raizMineira.model.Cliente;
+import com.example.raizMineira.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/mesas")
-@CrossOrigin(origins = "*")
-public class MesaController {
+@RequestMapping("/api/clientes")
+@CrossOrigin(origins = "*") // para permitir chamadas do seu frontend
+public class ClienteController {
 
     @Autowired
-    private MesaService service;
+    private ClienteService service;
 
-    // 1) Criar nova mesa
     @PostMapping
-    public Mesa criar(@RequestBody Mesa mesa) {
-        return service.criar(mesa);
+    public Cliente criar(@RequestBody Cliente cliente) {
+        return service.criar(cliente);
     }
 
-    // 2) Listar todas as mesas
     @GetMapping
-    public List<Mesa> listar() {
-        return service.listarTodas();
+    public List<Cliente> listar() {
+        return service.listar();
     }
 
-    // 3) Buscar mesa por ID
     @GetMapping("/{id}")
-    public Mesa buscarPorId(@PathVariable Integer id) {
+    public Cliente buscarId(@PathVariable Integer id) {
         return service.buscarId(id);
     }
 
-    // 4) Deletar mesa
+    @PutMapping("/{id}")
+    public Cliente atualizar(@PathVariable Integer id, @RequestBody Cliente cliente) {
+        return service.atualizar(id, cliente);
+    }
+
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Integer id) {
         service.deletar(id);
