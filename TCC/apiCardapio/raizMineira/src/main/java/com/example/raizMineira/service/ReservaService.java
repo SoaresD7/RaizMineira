@@ -16,12 +16,27 @@ public class ReservaService {
         this.repo = repo;
     }
 
+    /**
+     * Lista todas as reservas cadastradas.
+     */
+    public List<Reserva> listarTodas() {
+        return repo.findAll();
+    }
+
+    /**
+     * Lista reservas filtrando por CPF.
+     */
     public List<Reserva> listarPorCpf(String cpf) {
         return repo.findByCpf(cpf);
     }
 
+    /**
+     * Cria uma nova reserva.
+     * Aqui você pode incluir validações adicionais como:
+     * - Verificar se a mesa está disponível no horário.
+     * - Validar formato do CPF.
+     */
     public Reserva criarReserva(Reserva nova) {
-        // opcional: aqui você pode checar disponibilidade de mesa, formato de CPF, etc.
         return repo.save(nova);
     }
 }

@@ -2,21 +2,18 @@ package com.example.raizMineira.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.raizMineira.model.Reserva;
 import com.example.raizMineira.service.ReservaService;
 
 @RestController
 @RequestMapping("/api/reservas")
-@CrossOrigin(origins = "*")  // ajuste conforme seu front-end
+@CrossOrigin(origins = "*") // ajuste conforme seu front-end
 public class ReservaController {
 
     private final ReservaService service;
@@ -26,12 +23,20 @@ public class ReservaController {
     }
 
     /**
+     * GET /api/reservas
      * GET /api/reservas?cpf=12345678901
-     * Retorna todas as reservas registradas para um dado CPF.
+     * Retorna todas as reservas ou filtra por CPF, se informado.
      */
     @GetMapping
-    public ResponseEntity<List<Reserva>> listarPorCpf(@RequestParam String cpf) {
-        List<Reserva> reservas = service.listarPorCpf(cpf);
+    public ResponseEntity<List<Reserva>> listar(@RequestParam(required = false) String cpf) {
+        List<Reserva> reservas;
+
+        if (cpf != null && !cpf.isBlank()) {
+            reservas = service.listarPorCpf(cpf);
+        } else {
+            reservas = service.listarTodas();
+        }
+
         if (reservas.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -50,8 +55,8 @@ public class ReservaController {
      * }
      */
     @PostMapping
-    public ResponseEntity<Reserva> criar(@RequestBody Reserva reserva) {
+    public ResponseEntity<Reserva> criar(@Valid @RequestBody Reserva reserva) {
         Reserva criada = service.criarReserva(reserva);
-        return ResponseEntity.ok(criada);
+        return ResponseEntity.status(HttpStatus.CREATED).body(criada);
     }
 }
