@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adicionar Item ao Cardápio</title>
+  <link rel="stylesheet" href="AcionarCSS.css" />
+</head>
+<body>
+  <div class="tela">
+    <div class="caixa-grade" style="max-width: 400px; margin: auto;">
+      <h1 style="text-align:center; margin-bottom: 24px;">Adicionar Item ao Cardápio</h1>
+      <div class="formulario-cardapio">
+        <input type="text" placeholder="Nome do Item" class="input-cardapio" />
+        <input type="number" placeholder="Valor (R$)" class="input-cardapio" min="0" step="0.01" />
+        <input type="text" placeholder="Descrição do prato" class="input-cardapio" />
+        <select class="input-cardapio">
+          <option value="Entrada">Entradas</option>
+          <option value="Principal">Pratos Principais</option>
+          <option value="Vegetariano">Pratos Vegetarianos</option>
+          <option value="Sobremesa">Sobremesas</option>
+          <option value="Bebida">Bebidas</option>
+          <option value="Extra">Extras</option>
+        </select>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <button class="botao" style="flex:1;">Adicionar</button>
+          <button class="botao botao-voltar" style="flex:1;" onclick="window.location.href='../../GerenciarCardapio.html'">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="AdicionarJS.js"></script>
+</body>
+</html>
