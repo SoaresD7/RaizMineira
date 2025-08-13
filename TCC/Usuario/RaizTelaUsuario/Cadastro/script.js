@@ -1,5 +1,5 @@
 const duplas    = [[1,7],[6,12],[13,19],[18,24]];
-const ocupadas  = [3,7,12,18,21];
+let mesasAPI    = [];
 let mesaSelecionada = null;
 
 const descricoes = {
@@ -58,6 +58,17 @@ document.getElementById('btnVoltar').onclick = () => {
   window.location.href = '../Inicio/UsuarioTela.html';
 };
 
+// Buscar mesas da API
+async function fetchMesas() {
+  try {
+    const resp = await fetch('http://localhost:8080/api/mesas');
+    mesasAPI = await resp.json();
+  } catch (e) {
+    showToast('Erro ao buscar mesas', 'error');
+    mesasAPI = [];
+  }
+}
+
 // Abre popup de escolha de mesa
 document.getElementById('btn-escolher-mesa').onclick = () => {
   document.getElementById('popup-mesas').classList.remove('hidden');
@@ -74,7 +85,8 @@ function isDupla(n) {
   return duplas.some(pair => pair.includes(n));
 }
 
-function renderGrid() {
+async function renderGrid() {
+  await fetchMesas();
   const grid = document.getElementById('grid-mesas');
   grid.innerHTML = '';
   for (let i = 1; i <= 24; i++) {
@@ -83,7 +95,8 @@ function renderGrid() {
     btn.dataset.num = i;
     btn.className  = 'btn-mesa';
     if (isDupla(i)) btn.classList.add('dupla');
-    if (ocupadas.includes(i)) {
+    const mesaObj = mesasAPI.find(m => m.numero === i);
+    if (mesaObj && mesaObj.status !== 'DISPONIVEL') {
       btn.classList.add('ocupada');
       btn.disabled = true;
     }
@@ -94,7 +107,7 @@ function renderGrid() {
       document.getElementById('mesa-info').style.display = 'block';
 
       document.getElementById('status-mesa').textContent =
-        ocupadas.includes(i) ? 'Ocupada'
+        mesaObj && mesaObj.status !== 'DISPONIVEL' ? 'Ocupada'
       : isDupla(i)           ? 'Mesa dupla'
                              : 'Mesa simples';
 
@@ -123,8 +136,8 @@ document.getElementById('btn-confirmar-mesa').onclick = () => {
   clearError('mesaError');
 };
 
-// Ao enviar o formulário, redireciona para outro index.html
-document.getElementById('reservaForm').addEventListener('submit', e => {
+// Ao enviar o formulário, cadastra cliente e reserva na API
+document.getElementById('reservaForm').addEventListener('submit', async e => {
   e.preventDefault();
   ['nomeError','cpfError','emailError','telefoneError','dataError','horaError','mesaError']
     .forEach(clearError);
@@ -159,8 +172,40 @@ document.getElementById('reservaForm').addEventListener('submit', e => {
   }
 
   showToast('Confirmando reserva...','success');
-  setTimeout(() => {
-    // Redireciona após sucesso
-    window.location.href = '../Esqueceu/index.html';
-  }, 1200);
+
+  try {
+    // Cadastrar cliente
+    await fetch('http://localhost:8080/api/clientes', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nome: v('nome'),
+        cpf: v('cpf').replace(/\D/g,''),
+        email: v('email'),
+        telefone: v('telefone')
+      })
+    });
+
+    // Buscar mesa pelo número para pegar o id
+    const mesaObj = mesasAPI.find(m => m.numero === mesaSelecionada);
+
+    // Cadastrar reserva
+    await fetch('http://localhost:8080/api/reservas', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        idCliente: v('cpf').replace(/\D/g,''),
+        lugares: Number(document.getElementById('qtd-lugares').value),
+        dataReserva: v('data'),
+        horaReserva: v('hora') + ':00',
+        idMesa: mesaObj ? mesaObj.id : null
+      })
+    });
+
+    setTimeout(() => {
+      window.location.href = '../Esqueceu/index.html';
+    }, 1200);
+  } catch (e) {
+    showToast('Erro ao salvar reserva','error');
+  }
 });

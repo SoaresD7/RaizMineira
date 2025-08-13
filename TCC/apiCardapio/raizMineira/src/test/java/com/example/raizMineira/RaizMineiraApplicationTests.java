@@ -29,7 +29,7 @@ class RaizMineiraApplicationTests {
         produto.setNome("Pão de Queijo");
         produto.setDescricao("Delicioso pão de queijo mineiro.");
         produto.setPreco(5.99);
-        produto.setTipo(TipoProduto.ACOMPANHAMENTO);
+        produto.setTipo(TipoProduto.entradas);
 
         System.out.println("[TESTE] Salvando produto: " + produto.getNome());
 
@@ -52,7 +52,7 @@ class RaizMineiraApplicationTests {
 
         // Verificando os dados do produto buscado
         assertEquals("Pão de Queijo", produtoBuscado.getNome(), "Nome do produto buscado deve ser 'Pão de Queijo'");
-        assertEquals(TipoProduto.ACOMPANHAMENTO, produtoBuscado.getTipo(), "Tipo do produto buscado deve ser ACOMPANHAMENTO");
+        assertEquals(TipoProduto.entradas, produtoBuscado.getTipo(), "Tipo do produto buscado deve ser ACOMPANHAMENTO");
 
         System.out.println("[TESTE] Teste finalizado com sucesso!");
     }

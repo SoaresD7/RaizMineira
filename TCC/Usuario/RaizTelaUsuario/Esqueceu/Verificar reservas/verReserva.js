@@ -1,67 +1,125 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const toast = document.getElementById('toast');
-  const btnVoltar = document.getElementById('btnVoltar');
+document.addEventListener('DOMContentLoaded', async function () {
+  const nomeSpan = document.getElementById('nome');
+  const cpfSpan = document.getElementById('cpf');
+  const numeroReserva = document.getElementById('numeroReserva');
+  const dataSpan = document.getElementById('data');
+  const horaSpan = document.getElementById('hora');
+  const qtdPessoasSpan = document.getElementById('qtdPessoas');
+  const observacaoSpan = document.getElementById('observacao');
+
   const btnCancelar = document.getElementById('btnCancelar');
-  const alerta = document.getElementById('alertaCancelar');
-  const confirmar = document.getElementById('confirmarCancelar');
-  const fechar = document.getElementById('fecharCancelar');
+  const btnVoltar = document.getElementById('btnVoltar');
+  const alertaCancelar = document.getElementById('alertaCancelar');
+  const confirmarCancelar = document.getElementById('confirmarCancelar');
+  const fecharCancelar = document.getElementById('fecharCancelar');
+  const toast = document.getElementById('toast');
 
-  // Simulação de dados da reserva (você pode substituir por dados reais depois)
-  const reserva = {
-    nome: 'João da Silva',
-    cpf: '12345678901',
-    numeroReserva: '000123', // <-- Número da reserva fixo, vindo do cadastro
-    data: '10/08/2025',
-    hora: '19:30',
-    qtdPessoas: 4,
-    observacao: 'Mesa próxima à janela.'
-  };
+  let reservaId = null;
 
-  function showToast(message, tipo) {
-    toast.textContent = message;
-    toast.className = `toast show ${tipo}`;
-    clearTimeout(toast.hideTimer);
-    toast.hideTimer = setTimeout(() => {
-      toast.classList.remove('show');
+  const cpf = localStorage.getItem('cpfConsulta');
+  if (!cpf) {
+    showToast('CPF não encontrado. Faça login novamente.');
+    return;
+  }
+
+  try {
+    const clienteResp = await fetch(`http://localhost:8080/api/clientes/${cpf}`);
+    if (clienteResp.ok) {
+      const cliente = await clienteResp.json();
+      nomeSpan.textContent = cliente.nome || '--';
+      cpfSpan.textContent = cliente.cpf || '--';
+    } else {
+      nomeSpan.textContent = '--';
+      cpfSpan.textContent = '--';
+      showToast('Cliente não encontrado.');
+    }
+  } catch {
+    nomeSpan.textContent = '--';
+    cpfSpan.textContent = '--';
+    showToast('Erro ao buscar cliente.');
+  }
+
+  try {
+    const reservasResp = await fetch(`http://localhost:8080/api/reservas/cpf/${cpf}`);
+    if (reservasResp.ok) {
+      const reservas = await reservasResp.json();
+      if (reservas.length > 0) {
+        const reserva = reservas[0];
+        reservaId = reserva.id;
+
+        numeroReserva.textContent = reserva.id || '--';
+        dataSpan.textContent = formatarData(reserva.data_reserva) || '--';
+        horaSpan.textContent = reserva.hora_reserva || '--';
+        qtdPessoasSpan.textContent = reserva.lugares || '--';
+        observacaoSpan.textContent = reserva.observacao || '--';
+
+        btnCancelar.disabled = false;
+      } else {
+        limparCampos();
+        btnCancelar.disabled = true;
+        showToast('Nenhuma reserva encontrada.');
+      }
+    } else {
+      showToast('Erro ao buscar reservas.');
+    }
+  } catch {
+    showToast('Erro ao buscar reservas.');
+  }
+
+  btnCancelar.addEventListener('click', function () {
+    if (reservaId) {
+      alertaCancelar.style.display = 'flex';
+    }
+  });
+
+  confirmarCancelar.addEventListener('click', async function () {
+    if (reservaId) {
+      try {
+        const delResp = await fetch(`http://localhost:8080/api/reservas/${reservaId}`, {
+          method: 'DELETE',
+        });
+        if (delResp.ok) {
+          limparCampos();
+          btnCancelar.disabled = true;
+          reservaId = null;
+          showToast('Reserva cancelada com sucesso!');
+        } else {
+          showToast('Erro ao cancelar reserva.');
+        }
+      } catch {
+        showToast('Erro ao cancelar reserva.');
+      }
+      alertaCancelar.style.display = 'none';
+    }
+  });
+
+  fecharCancelar.addEventListener('click', function () {
+    alertaCancelar.style.display = 'none';
+  });
+
+  btnVoltar.addEventListener('click', function () {
+    window.location.href = '../Inicio/UsuarioTela.html';
+  });
+
+  function limparCampos() {
+    numeroReserva.textContent = '--';
+    dataSpan.textContent = '--';
+    horaSpan.textContent = '--';
+    qtdPessoasSpan.textContent = '--';
+    observacaoSpan.textContent = '--';
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    setTimeout(() => {
+      toast.style.display = 'none';
     }, 3000);
   }
 
-  // Preencher os dados da reserva
-  try {
-    document.getElementById('numeroReserva').textContent = reserva.numeroReserva;
-    document.getElementById('nome').textContent = reserva.nome;
-    document.getElementById('cpf').textContent = reserva.cpf;
-    document.getElementById('data').textContent = reserva.data;
-    document.getElementById('hora').textContent = reserva.hora;
-    document.getElementById('qtdPessoas').textContent = reserva.qtdPessoas;
-    document.getElementById('observacao').textContent = reserva.observacao;
-
-    showToast('Reserva carregada com sucesso!', 'success');
-  } catch (error) {
-    showToast('Erro ao carregar reserva!', 'error');
+  function formatarData(dataISO) {
+    if (!dataISO) return null;
+    const dataObj = new Date(dataISO);
+    return dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
   }
-
-  // Botão Voltar
-  btnVoltar.addEventListener('click', () => {
-    window.history.back();
-  });
-
-  // Botão Cancelar abre o alerta
-  btnCancelar.addEventListener('click', () => {
-    alerta.style.display = 'flex';
-  });
-
-  // Confirmar cancelamento: mostrar alerta verde e redirecionar
-  confirmar.addEventListener('click', () => {
-    alerta.style.display = 'none';
-    showToast('Reserva cancelada com sucesso!', 'success');
-    setTimeout(() => {
-      window.location.href = '../../Inicio/BoasVindas.html';
-    }, 2000);
-  });
-
-  // Fechar alerta sem cancelar
-  fechar.addEventListener('click', () => {
-    alerta.style.display = 'none';
-  });
 });

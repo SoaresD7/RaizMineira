@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS cardapio (
     nome VARCHAR(100) NOT NULL,
     descricao TEXT,
     preco DECIMAL(10,2) NOT NULL,
-    tipo ENUM('PRATO','BEBIDA','ACOMPANHAMENTO','SOBREMESA') NOT NULL,
+    tipo ENUM('entradas','pratosprincipais','pratosvegetarianos','sobrimesas','bebidas','extras') NOT NULL,
     criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
@@ -146,3 +146,5 @@ FROM (
   LEFT JOIN reservas r ON DATE(r.data_reserva) = DATE(p.criado_em) AND r.id_mesa = c.id_mesa
 ) AS sub
 GROUP BY dia;
+
+DELETE FROM cardapio WHERE nome = 'wawa';

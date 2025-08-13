@@ -15,13 +15,15 @@
           <!-- Botões de filtro serão gerados dinamicamente pelo CardapioJS.js -->
         </div>
       </div>
-      <button class="botao grande" onclick="window.location.href='Adicionar/Editar/AdicionarItem.html'">Adicionar Item</button>
-      <button class="botao" onclick="window.location.href='Adicionar/Editar/EditarItem.html'" id="btn-editar-item">Editar Item</button>
-      <button class="botao">Remover Item</button>
       <button class="botao botao-voltar" onclick="window.location.href='../Main.html'">Voltar</button>
     </div>
     <div class="conteudo-principal">
       <h1 style="text-align:center; margin-bottom: 24px;">Gerenciar Cardápio</h1>
+      <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:2rem;">
+        <button class="botao grande" onclick="window.location.href='Adicionar/Editar/AdicionarItem.html'">Adicionar Item</button>
+        <button class="botao botao-editar" id="btn-editar-item" disabled>Editar Item</button>
+        <button class="botao botao-remover" id="btn-remover-item" disabled>Remover Item</button>
+      </div>
       <div class="painel-cardapio-scroll">
         <div class="tabela-cardapio">
           <div class="linha-cardapio">

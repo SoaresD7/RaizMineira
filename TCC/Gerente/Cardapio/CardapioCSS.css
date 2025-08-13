@@ -1,3 +1,8 @@
+.item-cardapio.selecionado {
+  border: 3px solid #8e7138;
+  background: #e5dfbf;
+  box-shadow: 0 0 12px #388e3c44;
+}
 /* === Cardápio Moderno, grid sem buracos, mantendo as cores originais === */
 :root {
   --neon-primary: #f7a444;
@@ -111,7 +116,7 @@ h1 {
   transition: box-shadow 0.2s, transform 0.2s;
   width: 100%;
   max-width: 260px;
-  color: var(--dark-text);
+  color: #6b460dc3;
   justify-self: stretch;
   align-self: stretch;
 }
@@ -119,9 +124,18 @@ h1 {
   box-shadow: 0 0 12px rgba(0,0,0,0.13);
   transform: translateY(-4px);
 }
+/* ...existing code... */
 .item-cardapio .valor {
   font-size: 1rem;
   color: var(--accent-green);
+}
+.item-cardapio .descricao {
+  max-height: 2.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #a66c00;
+  font-size: 0.95rem;
 }
 .item-cardapio .categoria {
   align-self: flex-start;
@@ -170,6 +184,7 @@ h1 {
   font-size: 1.25rem;
   color: var(--dark-text);
 }
+/* ...existing code... */
 .botao, .botao-voltar {
   width: 100%;
   max-width: 400px;
@@ -186,8 +201,29 @@ h1 {
   background: var(--neon-primary);
   color: var(--dark-text);
 }
-.botao:hover {
-  background: var(--neon-hover);
+.botao-editar {
+  background: #ffe082;
+  color: #a66c00;
+  border: 2px solid #ffd18a;
+}
+.botao-editar:disabled {
+  background: #ffe08299;
+  color: #a66c0099;
+}
+.botao-editar:hover:not(:disabled) {
+  background: #ffd18a;
+}
+.botao-remover {
+  background: #ff5252;
+  color: #fff;
+  border: 2px solid #ff1744;
+}
+.botao-remover:disabled {
+  background: #ff525299;
+  color: #fff9;
+}
+.botao-remover:hover:not(:disabled) {
+  background: #ff1744;
 }
 .botao-voltar {
   background: var(--pane-bg);
