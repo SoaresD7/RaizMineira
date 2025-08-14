@@ -20,6 +20,14 @@ import com.example.raizMineira.service.ClienteService;
 @RequestMapping("/api/clientes")
 @CrossOrigin(origins = "*") // para permitir chamadas do seu frontend
 public class ClienteController {
+    @PostMapping("/novo")
+    public Cliente criarComReserva(@RequestBody com.example.raizMineira.dto.ClienteReservaDTO dto) {
+        return service.criarComReserva(dto);
+    }
+    @GetMapping("/cpf/{cpf}")
+    public Cliente buscarPorCpf(@PathVariable String cpf) {
+        return service.buscarPorCpf(cpf);
+    }
 
     @Autowired
     private ClienteService service;

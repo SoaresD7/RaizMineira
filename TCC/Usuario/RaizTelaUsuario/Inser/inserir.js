@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('inserirForm');
   const btnVoltar = document.getElementById('btnVoltar');
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const cpf = document.getElementById('cpf').value.trim();
@@ -46,10 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (valid) {
-      showToast('Reserva inserida com sucesso!', 'success');
-      setTimeout(() => {
-        window.location.href = '../../SistemaUsuarioInicio/Inicio/Inicio.html';
-      }, 2600);
+      // Valida no banco de dados via API
+      try {
+        const resp = await fetch(`http://localhost:8080/api/reservas?cpf=${cpf}`);
+        if (resp.ok) {
+          const reservas = await resp.json();
+          // Procura reserva com código igual ao digitado
+          const reservaEncontrada = reservas.find(r => String(r.codigoReserva || r.codigo_reserva) === reserva);
+          if (reservaEncontrada) {
+            showToast('Reserva validada com sucesso!', 'success');
+            setTimeout(() => {
+              window.location.href = '../../SistemaUsuarioInicio/Inicio/Inicio.html';
+            }, 2600);
+          } else {
+            document.getElementById('reservaError').textContent = 'Código de reserva não encontrado para este CPF.';
+            showToast('Código de reserva inválido.', 'error');
+          }
+        } else {
+          showToast('Erro ao consultar reserva.', 'error');
+        }
+      } catch {
+        showToast('Erro de conexão com a API.', 'error');
+      }
     } else {
       showToast('Corrija os erros e tente novamente.', 'error');
     }

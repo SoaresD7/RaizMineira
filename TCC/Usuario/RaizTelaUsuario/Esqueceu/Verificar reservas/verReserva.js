@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   try {
-    const clienteResp = await fetch(`http://localhost:8080/api/clientes/${cpf}`);
+    const clienteResp = await fetch(`http://localhost:8080/api/clientes/cpf/${cpf}`);
     if (clienteResp.ok) {
       const cliente = await clienteResp.json();
       nomeSpan.textContent = cliente.nome || '--';
@@ -40,18 +40,18 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   try {
-    const reservasResp = await fetch(`http://localhost:8080/api/reservas/cpf/${cpf}`);
+    const reservasResp = await fetch(`http://localhost:8080/api/reservas?cpf=${cpf}`);
     if (reservasResp.ok) {
       const reservas = await reservasResp.json();
       if (reservas.length > 0) {
         const reserva = reservas[0];
-        reservaId = reserva.id;
+        reservaId = reserva.id || reserva.idReserva;
 
-        numeroReserva.textContent = reserva.id || '--';
-        dataSpan.textContent = formatarData(reserva.data_reserva) || '--';
-        horaSpan.textContent = reserva.hora_reserva || '--';
-        qtdPessoasSpan.textContent = reserva.lugares || '--';
-        observacaoSpan.textContent = reserva.observacao || '--';
+        numeroReserva.textContent = reserva.codigoReserva || reserva.codigo_reserva || reserva.id || reserva.idReserva || '--';
+        dataSpan.textContent = reserva.dataReserva || reserva.data_reserva || '--';
+        horaSpan.textContent = reserva.horaReserva || reserva.hora_reserva || '--';
+        qtdPessoasSpan.textContent = reserva.lugares || reserva.qtdPessoas || '--';
+        observacaoSpan.textContent = reserva.observacao || reserva.observacao_mesa || '--';
 
         btnCancelar.disabled = false;
       } else {
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   btnVoltar.addEventListener('click', function () {
-    window.location.href = '../Inicio/UsuarioTela.html';
+    window.location.href = '../../Inicio/UsuarioTela.html';
   });
 
   function limparCampos() {

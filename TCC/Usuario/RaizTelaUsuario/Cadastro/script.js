@@ -174,31 +174,23 @@ document.getElementById('reservaForm').addEventListener('submit', async e => {
   showToast('Confirmando reserva...','success');
 
   try {
-    // Cadastrar cliente
-    await fetch('http://localhost:8080/api/clientes', {
+    // Buscar mesa pelo número para pegar o id
+    const mesaObj = mesasAPI.find(m => m.numero === mesaSelecionada);
+
+    // Cadastrar cliente + reserva juntos
+    await fetch('http://localhost:8080/api/clientes/novo', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         nome: v('nome'),
         cpf: v('cpf').replace(/\D/g,''),
         email: v('email'),
-        telefone: v('telefone')
-      })
-    });
-
-    // Buscar mesa pelo número para pegar o id
-    const mesaObj = mesasAPI.find(m => m.numero === mesaSelecionada);
-
-    // Cadastrar reserva
-    await fetch('http://localhost:8080/api/reservas', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        idCliente: v('cpf').replace(/\D/g,''),
+        telefone: v('telefone'),
+        idMesa: mesaObj ? mesaObj.id : null,
         lugares: Number(document.getElementById('qtd-lugares').value),
         dataReserva: v('data'),
-        horaReserva: v('hora') + ':00',
-        idMesa: mesaObj ? mesaObj.id : null
+        horaReserva: v('hora'),
+        observacao: descricoes[mesaSelecionada] || ''
       })
     });
 

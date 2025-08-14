@@ -13,7 +13,7 @@ import com.example.raizMineira.service.ReservaService;
 
 @RestController
 @RequestMapping("/api/reservas")
-@CrossOrigin(origins = "*") // ajuste conforme seu front-end
+@CrossOrigin(origins = "*")
 public class ReservaController {
 
     private final ReservaService service;
@@ -42,6 +42,19 @@ public class ReservaController {
         }
         return ResponseEntity.ok(reservas);
     }
+
+        /**
+         * GET /api/reservas/clientes
+         * Retorna reservas com dados completos do cliente.
+         */
+        @GetMapping("/clientes")
+        public ResponseEntity<List<com.example.raizMineira.dto.ReservaClienteDTO>> listarReservasComCliente() {
+            List<com.example.raizMineira.dto.ReservaClienteDTO> dtos = service.listarReservasComCliente();
+            if (dtos.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(dtos);
+        }
 
     /**
      * POST /api/reservas

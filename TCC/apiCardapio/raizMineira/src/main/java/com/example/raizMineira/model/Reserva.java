@@ -9,6 +9,10 @@ import jakarta.validation.constraints.*;
 @Entity
 @Table(name = "reservas")
 public class Reserva {
+    @Column(name = "codigo_reserva", length = 6, unique = true)
+    private String codigoReserva;
+    @Column(name = "observacao")
+    private String observacao;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +52,18 @@ public class Reserva {
     public Reserva() {}
 
     // Getters e setters
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+    public String getObservacao() {
+        return observacao;
+    }
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
     public Integer getId() {
         return id;
     }

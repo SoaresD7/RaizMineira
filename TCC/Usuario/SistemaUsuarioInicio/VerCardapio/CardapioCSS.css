@@ -45,6 +45,7 @@ body {
   backdrop-filter: blur(8px);
   box-shadow: 0 0 12px rgba(0,0,0,0.5);
   width: 200px;
+  font-weight: bold;
   justify-content: center;
 }
 .menu-lateral .botao {
@@ -57,6 +58,7 @@ body {
   cursor: pointer;
   box-shadow: 0 0 6px var(--neon-primary);
   transition: background 0.2s;
+  font-weight: bold;
 }
 .menu-lateral .botao:hover {
   background: var(--neon-hover);
@@ -117,6 +119,14 @@ h1 {
   width: 100%;
   max-width: 260px;
 }
+
+.item-cardapio .descricao {
+  word-break: break-word;
+  white-space: pre-line;
+  font-size: 0.98rem;
+  color: #fefefe;
+}
+
 .item-cardapio:hover {
   box-shadow: 0 0 12px rgba(0,0,0,0.5);
   transform: translateY(-4px);

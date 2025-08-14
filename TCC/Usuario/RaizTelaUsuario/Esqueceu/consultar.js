@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Consulta na API usando GET e parâmetros na URL
     try {
-      const url = `http://localhost:8080/api/clientes/${cpf}`;
+      const url = `http://localhost:8080/api/clientes/cpf/${cpf}`;
       const response = await fetch(url, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
